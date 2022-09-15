@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MadLibs</title>
+    <meta name="BCS22" content="MadLibs" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Raleway"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+  </head>
+
+  <body class="">
+    <!-- header start -->
+    <div id="" class="w3-padding-32 w3-bar w3-black">
+      <div id="logo" class="w3-col s12 m5 l7 w3-center">
+        <a href="#madlibs" class="w3-button w3-mobile">MadLibs</a>
+      </div>
+      <nav id="nav" class="w3-col s12 m7 l5 w3-center">
+        <a href="#home" class="w3-button w3-mobile">Home</a>
+        <a href="#dashboard" class="w3-button w3-mobile">Dashboard</a>
+
+        <a
+          href="#login"
+          onclick="document.getElementById('id01').style.display='block'"
+          class="w3-button w3-mobile"
+          >Login</a
+        >
+        <a href="#logout" class="w3-button w3-mobile">Logout</a>
+      </nav>
+    </div>
+    <!-- header end -->
+
+    <!-- login modal start -->
+    <div id="id01" class="w3-modal">
+      <div
+        class="w3-modal-content w3-card-4 w3-animate-zoom"
+        style="max-width: 600px"
+      >
+        <div class="w3-center">
+          <br />
+          <span
+            onclick="document.getElementById('id01').style.display='none'"
+            class="w3-button w3-xlarge w3-hover-red w3-display-topright"
+            title="Close Modal"
+            >&times;</span
+          >
+          <img
+            src="images/img_avatar4.png"
+            alt="Avatar"
+            style="width: 30%"
+            class="w3-circle w3-margin-top"
+          />
+        </div>
+
+        <form class="w3-container" action="/action_page.php">
+          <div class="w3-section">
+            <label><b>Username</b></label>
+            <input
+              class="w3-input w3-border w3-margin-bottom"
+              type="text"
+              placeholder="Enter Username"
+              name="usrname"
+              required
+            />
+            <label><b>Password</b></label>
+            <input
+              class="w3-input w3-border"
+              type="password"
+              placeholder="Enter Password"
+              name="psw"
+              required
+            />
+            <button
+              class="w3-button w3-block w3-green w3-section w3-padding"
+              type="submit"
+            >
+              Login
+            </button>
+            <input
+              class="w3-check w3-margin-top"
+              type="checkbox"
+              checked="checked"
+            />
+            Remember me
+          </div>
+        </form>
+
+        <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+          <button
+            onclick="document.getElementById('id01').style.display='none'"
+            type="button"
+            class="w3-button w3-red"
+          >
+            Cancel
+          </button>
+          <span class="w3-right w3-padding w3-hide-small"
+            >Forgot <a href="#">password?</a></span
+          >
+        </div>
+      </div>
+    </div>
+    <!-- login modal end -->
+
+    <!-- body start -->
+    <div class="w3-container w3-margin-left w3-margin-top">
+      <h2>Article-1</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur culpa
+        laudantium perferendis ipsum dolorem dolore mollitia laboriosam saepe
+        cum modi aperiam in, numquam esse nesciunt nulla possimus illo ducimus
+        neque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel hic
+        incidunt modi, ad quidem tenetur alias deserunt quibusdam tempore iste
+        labore culpa libero ipsa in. Quod perspiciatis nisi totam eveniet.
+      </p>
+      <hr />
+    </div>
+
+    <article class="w3-container w3-margin-left">
+      <h2>Article-2</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
+        officiis accusamus exercitationem commodi rem aliquid laudantium
+        perspiciatis atque. Saepe reiciendis sequi veniam ducimus eveniet eos
+        voluptatem laudantium magnam quasi eius! Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Quae, tempore? Blanditiis pariatur debitis
+        amet, repellat dolore sit similique delectus molestiae, ipsa
+        perspiciatis nobis quo molestias illo hic obcaecati asperiores eligendi.
+      </p>
+      <hr />
+    </article>
+
+    <section class="w3-container w3-margin-left">
+      <h2>Article-3</h2>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam, ducimus
+        amet harum nisi quo laborum eveniet quod perspiciatis modi atque quia
+        possimus reiciendis temporibus aspernatur repellendus enim sapiente
+        itaque quos! Lorem ipsum dolor sit amet consectetur adipisicing elit. A,
+        laudantium. Quae velit libero culpa sint quos laborum dolor possimus hic
+        nisi illo quisquam laboriosam obcaecati maxime accusamus accusantium,
+        repudiandae ea.
+      </p>
+      <hr />
+    </section>
+
+    <section class="w3-container w3-margin-left">
+      <h2>Article-4</h2>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam, ducimus
+        amet harum nisi quo laborum eveniet quod perspiciatis modi atque quia
+        possimus reiciendis temporibus aspernatur repellendus enim sapiente
+        itaque quos! Lorem ipsum dolor sit amet consectetur adipisicing elit. A,
+        laudantium. Quae velit libero culpa sint quos laborum dolor possimus hic
+        nisi illo quisquam laboriosam obcaecati maxime accusamus accusantium,
+        repudiandae ea.
+      </p>
+      <hr />
+    </section>
+    <!-- body end -->
+
+    <!-- footer start-->
+    <footer class="w3-padding-16 w3-black w3-center">
+      <div class="w3-row">
+        <div class="w3-col s6 w3-center">
+          <h5 class="bcs">❤️ Made with love by MadLibs, BCS.</h5>
+          <i class="fa fa-facebook-official w3-hover-opacity"></i>
+          <i class="fa fa-instagram w3-hover-opacity"></i>
+          <i class="fa fa-snapchat w3-hover-opacity"></i>
+          <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+          <i class="fa fa-twitter w3-hover-opacity"></i>
+          <i class="fa fa-linkedin w3-hover-opacity"></i>
+        </div>
+        <div class="w3-col s6 w3-center policy">
+          <a href="#">Read Our Privacy Policy</a><br /><br />
+          &copy; 2022 MadLibs, BCS.
+        </div>
+      </div>
+    </footer>
+    <!-- footer end -->
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
