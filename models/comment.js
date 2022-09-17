@@ -1,39 +1,57 @@
+
+// IMPORTS
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Comment extends Model { 
+
+// Create Create the Comment model
+class Comment extends Model{
+    isLinkedToUser(userId){
+        return userId === this.user_id;
+    }
 }
 
+
+// Define table columns + configuration
 Comment.init(
-    {id: {
-        type: DataType.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-    }
-    comment_text: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            len: [1]
+    {
+        id: {
+            type: DataType.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        content: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
+        },
+        fillin_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false, 
+            references: {
+                model: 'fillin',
+                key: 'id'
+            }
         }
-    },
-    template_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false, 
-        references: {
-            model: 'template',
-            key: 'id'
-        }
-    }
-
     }, 
-    sequelize, 
-        timestamps: false, 
-        freezeTableName: true, 
-        underscored: true, 
-        modelName: 'Comment'
-    
-
+    {
+        sequelize, // Sequelize connection
+        freezeTableName: true, // don't pluralize name of database table
+        underscored: true, // uses under_scores instead of camelCasing
+        modelName: 'comment', // make the model name be lowercase in the database
+    }
 )
+
+
+// EXPORT
 module.exports = Comment; 
