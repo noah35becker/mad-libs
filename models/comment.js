@@ -5,18 +5,14 @@ const sequelize = require('../config/connection');
 
 
 // Create Create the Comment model
-class Comment extends Model{
-    isLinkedToUser(userId){
-        return userId === this.user_id;
-    }
-}
+class Comment extends Model{}
 
 
 // Define table columns + configuration
 Comment.init(
     {
         id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
