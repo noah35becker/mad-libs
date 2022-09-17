@@ -2,6 +2,7 @@
 // IMPORTS
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
+const Template = require('./Template');
 
 
 
@@ -18,16 +19,24 @@ Fillin.init(
             primaryKey: true,
             autoIncrement: true
         },
-        content: {
-            type: DataTypes.JSON, // this will be an array of strings, and only converted to JSON upon beforeCreate or beforeUpdate (see hooks below)
-            allowNull: false
-        },
         template_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: 'template',
                 key: 'id'
+            }
+        },
+        content: {
+            type: DataTypes.JSON, // this will be an array of strings, and only converted to JSON upon beforeCreate or beforeUpdate (see hooks below)
+            allowNull: false,
+            validate: {
+                async numInputsMatchesTemplate(value){
+                    var template = await Template.findByPk(this.template_id, {attributes: ['content']});
+                    if (template.content.length === value.length)
+                        return null;
+                    throw new Error('Number of inputs does not match the template');
+                }
             }
         },
         user_id: {
