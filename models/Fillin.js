@@ -28,7 +28,7 @@ Fillin.init(
             }
         },
         content: {
-            type: DataTypes.JSON, // this will be an array of strings, and only converted to JSON upon beforeCreate or beforeUpdate (see hooks below)
+            type: DataTypes.TEXT, // this will be an array of strings, and only converted to JSON upon beforeCreate or beforeUpdate (see hooks below)
             allowNull: false,
             validate: {
                 async numInputsMatchesTemplate(value){

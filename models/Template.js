@@ -104,16 +104,15 @@ class Template extends Model{
                             isStatic: true,
                             word: word
                         },
-                            isAlphanumeric(word) ? staticIndex : null
+                            isAlphanumeric(word) ? staticIndex++ : null
                     ));
-                    staticIndex++;
                 }
         }
 
         return {
             contentArr: arr,
-            staticCount: staticIndex,
-            mutableCount: mutableIndex
+            static_count: staticIndex,
+            mutable_count: mutableIndex
         };
     }
 
@@ -149,19 +148,18 @@ Template.init(
         },
         content: {
             type: DataTypes.JSON, // this will be an array of Words, and only converted to JSON upon beforeCreate or beforeUpdate (see hooks below)
-            allowNull: false,
-            unique: true
+            allowNull: false
         },
-        staticCount: {
+        static_count: {
             type: DataTypes.INTEGER
         },
-        mutableCount: {
+        mutable_count: {
             type: DataTypes.INTEGER,
             validate: {
                 min: 1
             }
         },
-        redactionOrder: {
+        redaction_order: {
             type: DataTypes.JSON // this will be an array of integers, and only converted to JSON upon beforeCreate (see hooks below)
         },
         user_id: {
@@ -182,16 +180,16 @@ Template.init(
             beforeCreate: newTemplateData => {
                 let processedData = Template.fromString(newTemplateData.content);
                     newTemplateData.content = JSON.stringify(processedData.contentArr);
-                    newTemplateData.staticCount = processedData.staticCount;
-                    newTemplateData.mutableCount = processedData.mutableCount;
+                    newTemplateData.static_count = processedData.static_count;
+                    newTemplateData.mutable_count = processedData.mutable_count;
 
-                newTemplateData.redactionOrder = JSON.stringify(Template.getRedactionOrder());
+                newTemplateData.redaction_order = JSON.stringify(Template.getRedactionOrder());
 
                 return newTemplateData;
             },
             beforeFind: queriedTemplateData => {
                 queriedTemplateData.content = JSON.parse(queriedTemplateData.content);
-                queriedTemplateData.redactionOrder = JSON.parse(queriedTemplateData.redactionOrder);
+                queriedTemplateData.redaction_order = JSON.parse(queriedTemplateData.redaction_order);
                 return queriedTemplateData;
             }
         }
