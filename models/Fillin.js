@@ -2,7 +2,7 @@
 // IMPORTS
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
-const Template = require('./Template');
+const {Template} = require('./');
 
 
 
@@ -32,10 +32,10 @@ Fillin.init(
             allowNull: false,
             validate: {
                 async numInputsMatchesTemplate(value){
-                    var template = await Template.findByPk(this.template_id, {attributes: ['content']});
-                    if (template.content.length === value.length)
+                    var template = await Template.findByPk(this.template_id, {attributes: ['mutableCount']});
+                    if (template.mutableCount === value.length)
                         return null;
-                    throw new Error('Number of inputs does not match the template');
+                    throw new Error('Number of inputs does not match the template\'s number of mutables');
                 }
             }
         },

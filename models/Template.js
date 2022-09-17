@@ -67,12 +67,12 @@ class Template extends Model{
             return false;
         }
 
-        const output = [];
+        const arr = [];
         input = input.trim();
 
         const squareBracketIndices =  getIndicesOfSquareBrackets();
         if (!squareBracketIndices)
-            return undefined;
+            throw new Error('Square brackets are not properly formatted');
 
         const mutables = [];
         let inputNoMutables = input;
@@ -81,19 +81,16 @@ class Template extends Model{
             mutables.push(mutableString.trim() || MUTABLE_DEFAULT_LABEL);
             inputNoMutables = inputNoMutables.replace(`[${mutableString}]`, '[]');
         }
-        if (!mutables.length)
-            return undefined;
 
         const split = inputNoMutables
             .replaceAll('[]', ' [] ')
             .split(' ');
-        let staticIndex = 0;
-        let mutableIndex = 0;
+        var staticIndex = 0, mutableIndex = 0;
         for (var word of split){
             word = word.trim();
             if (word)
                 if (word === '[]'){
-                    output.push(new Word(
+                    arr.push(new Word(
                         {
                             isStatic: false,
                             label: mutables[mutableIndex]
@@ -102,7 +99,7 @@ class Template extends Model{
                     ));
                     mutableIndex++;
                 } else {
-                    output.push(new Word(
+                    arr.push(new Word(
                         {
                             isStatic: true,
                             word: word
@@ -113,7 +110,11 @@ class Template extends Model{
                 }
         }
 
-        return output;
+        return {
+            contentArr: arr,
+            staticCount: staticIndex,
+            mutableCount: mutableIndex
+        };
     }
 
 
@@ -140,6 +141,8 @@ Template.init(
         },
         title: {
             type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
             validate: {
                 notEmpty: true
             }
@@ -148,6 +151,15 @@ Template.init(
             type: DataTypes.JSON, // this will be an array of Words, and only converted to JSON upon beforeCreate or beforeUpdate (see hooks below)
             allowNull: false,
             unique: true
+        },
+        staticCount: {
+            type: DataTypes.INTEGER
+        },
+        mutableCount: {
+            type: DataTypes.INTEGER,
+            validate: {
+                min: 1
+            }
         },
         redactionOrder: {
             type: DataTypes.JSON // this will be an array of integers, and only converted to JSON upon beforeCreate (see hooks below)
@@ -168,8 +180,13 @@ Template.init(
         modelName: 'template', // make the table name lowercase in the database
         hooks: {
             beforeCreate: newTemplateData => {
-                newTemplateData.content = JSON.stringify(Template.fromString(newTemplateData.content));
+                let processedData = Template.fromString(newTemplateData.content);
+                    newTemplateData.content = JSON.stringify(processedData.contentArr);
+                    newTemplateData.staticCount = processedData.staticCount;
+                    newTemplateData.mutableCount = processedData.mutableCount;
+
                 newTemplateData.redactionOrder = JSON.stringify(Template.getRedactionOrder());
+
                 return newTemplateData;
             },
             beforeFind: queriedTemplateData => {
