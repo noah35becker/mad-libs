@@ -1,6 +1,6 @@
 
 // IMPORTS
-const seedUsers = require('./template-seeds');
+const seedUsers = require('./user-seeds');
 const seedTemplates = require('./template-seeds');
 const seedFillins = require('./fillin-seeds');
 const seedComments = require('./comment-seeds');
