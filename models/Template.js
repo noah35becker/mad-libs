@@ -6,7 +6,7 @@ const _ = require('lodash');
 
 // GLOBAL VARIABLES
 const MUTABLE_DEFAULT_LABEL = 'word';
-const UNREDACTION_LEVELS = 5;
+const REDACTION_LEVELS = 5;
 
 
 
@@ -117,11 +117,11 @@ class Template extends Model{
     }
 
 
-    // Create a random order for sequentially unredacting every nth element
-    static getUnredactionOrder(){
+    // Create a random order for sequentially redacting every nth element
+    static getRedactionOrder(){
         const output = [];
         
-        for (let i = 0; i <= UNREDACTION_LEVELS - 2; i++)
+        for (let i = 0; i < REDACTION_LEVELS - 1; i++)
             output.push(i);
     
         return _.shuffle(output);
@@ -149,7 +149,7 @@ Template.init(
             allowNull: false,
             unique: true
         },
-        unredactionOrder: {
+        redactionOrder: {
             type: DataTypes.JSON // this will be an array of integers, and only converted to JSON upon beforeCreate (see hooks below)
         },
         user_id: {
@@ -169,12 +169,12 @@ Template.init(
         hooks: {
             beforeCreate: newTemplateData => {
                 newTemplateData.content = JSON.stringify(Template.fromString(newTemplateData.content));
-                newTemplateData.unredactionOrder = JSON.stringify(Template.getUnredactionOrder());
+                newTemplateData.redactionOrder = JSON.stringify(Template.getRedactionOrder());
                 return newTemplateData;
             },
             beforeFind: queriedTemplateData => {
                 queriedTemplateData.content = JSON.parse(queriedTemplateData.content);
-                queriedTemplateData.unredactionOrder = JSON.parse(queriedTemplateData.unredactionOrder);
+                queriedTemplateData.redactionOrder = JSON.parse(queriedTemplateData.redactionOrder);
                 return queriedTemplateData;
             }
         }
