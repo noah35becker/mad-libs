@@ -109,27 +109,29 @@ class Template extends Model{
     }
 
 
-    // Return this template's "content" redacted to the level of redactionLvl (0 = no redaction)
+    // Return this template with its "content" redacted to the level of redactionLvl (0 = no redaction)
     redactContent(redactionLvl){
-        var content = JSON.parse(this.content);
+        var redactedContent = JSON.parse(this.content);
         let redaction_order = JSON.parse(this.redaction_order);
     
         for (let i = 0; i < redactionLvl; i++){
             for (let r = redaction_order[i]; r < this.static_count; r += redaction_order.length){
-                let wordIndex = content.findIndex(elem => elem.staticIndex === r);
-                let word = content[wordIndex].word;
-                let redacted = '';
+                let wordIndex = redactedContent.findIndex(elem => elem.staticIndex === r);
+                let word = redactedContent[wordIndex].word;
+                let redactedSpaces = '';
                 for (let x = 1; x <= word.length; x++)
-                    redacted += ' ';    
+                    redactedSpaces += ' ';    
                 
-                content[wordIndex] = {
+                redactedContent[wordIndex] = {
                     isRedacted: true,
-                    redactedString: redacted,
+                    redactedString: redactedSpaces
                 }
             }
         }
 
-        return content;
+        this.content = JSON.stringify(redactedContent);
+
+        return this;
     }
 }
 
