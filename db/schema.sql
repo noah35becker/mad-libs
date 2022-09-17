@@ -1,0 +1,4 @@
+
+DROP DATABASE IF EXISTS mad_libs_db;
+
+CREATE DATABASE mad_libs_db;
