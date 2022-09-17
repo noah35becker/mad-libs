@@ -13,6 +13,11 @@ const fillinsData = [
         user_id: 2
     },
     {
+        template_id: 2,
+        content: ['plaintains', 'mice'],
+        user_id: 3
+    },
+    {
         template_id: 3,
         content: ['handbags', 'ugliest'],
         user_id: 3

@@ -29,6 +29,7 @@ class Word{
 
 // Create the Template model
 class Template extends Model{
+
     // Convert string to array of Words
     static fromString(input){
         const arr = [];
@@ -151,7 +152,7 @@ Template.init(
             }
         },
         content: {
-            type: DataTypes.JSON, // this will be an array of Words, and only converted to JSON upon beforeCreate or beforeUpdate (see hooks below)
+            type: DataTypes.JSON, // this will be an array of Words, and only converted to JSON upon beforeCreate (see hooks below)
             allowNull: false
         },
         static_count: {
@@ -190,11 +191,6 @@ Template.init(
                 newTemplateData.redaction_order = JSON.stringify(Template.getRedactionOrder());
 
                 return newTemplateData;
-            },
-            beforeFind: queriedTemplateData => {
-                queriedTemplateData.content = JSON.parse(queriedTemplateData.content);
-                queriedTemplateData.redaction_order = JSON.parse(queriedTemplateData.redaction_order);
-                return queriedTemplateData;
             }
         }
     }
