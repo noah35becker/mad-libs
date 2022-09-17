@@ -2,6 +2,12 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Vote extends Model { 
+    isLinkedToFillin(FillinId){
+        return FillinId === this.Fillin_id;
+    }
+    isLinkedToUser(userId){
+        return userId === this.user_id;
+    }
 }
 
 Vote.init(
@@ -27,11 +33,6 @@ Vote.init(
             key: 'id'
         }
     },
-
-         voteType: { type: Sequelize.BOOLEAN, allowNull:false },
-         [Sequelize.literal("(SELECT COUNT(*) FROM Votes WHERE fillinId=fillin.id AND Votes.voteType=true)"), "upVote"],
-         [Sequelize.literal("(SELECT COUNT(*) FROM Votes WHERE fillinId=fillin.id AND Votes.voteType=false)"), "downVote"]
-
     }, 
     sequelize, 
         timestamps: false, 
