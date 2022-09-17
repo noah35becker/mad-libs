@@ -126,6 +126,30 @@ class Template extends Model{
     
         return _.shuffle(output);
     }
+
+
+    // Return this template's "content" redacted to the level of redactionLvl (0 = no redaction)
+    redactContent(redactionLvl){
+        var content = JSON.parse(this.content);
+        let redaction_order = JSON.parse(this.redaction_order);
+    
+        for (let i = 0; i < redactionLvl; i++){
+            for (let r = redaction_order[i]; r < this.static_count; r += redaction_order.length){
+                let wordIndex = content.findIndex(elem => elem.staticIndex === r);
+                let word = content[wordIndex].word;
+                let redacted = '';
+                for (let x = 1; x <= word.length; x++)
+                    redacted += ' ';    
+                
+                content[wordIndex] = {
+                    isRedacted: true,
+                    redactedString: redacted,
+                }
+            }
+        }
+
+        return content;
+    }
 }
 
 
@@ -200,3 +224,133 @@ Template.init(
 
 // EXPORT
 module.exports = Template;
+
+
+
+
+
+
+// TEST
+var testTemplate = {
+	"id": 1,
+	"title": "Template #1",
+	"content": [
+		{
+			"isStatic": true,
+			"word": "Hello,",
+			"staticIndex": 0
+		},
+		{
+			"isStatic": true,
+			"word": "my",
+			"staticIndex": 1
+		},
+		{
+			"isStatic": true,
+			"word": "name",
+			"staticIndex": 2
+		},
+		{
+			"isStatic": true,
+			"word": "is",
+			"staticIndex": 3
+		},
+		{
+			"isStatic": false,
+			"label": "noun",
+			"mutableIndex": 0
+		},
+		{
+			"isStatic": true,
+			"word": ".",
+			"staticIndex": null
+		},
+		{
+			"isStatic": true,
+			"word": "I",
+			"staticIndex": 4
+		},
+		{
+			"isStatic": true,
+			"word": "like",
+			"staticIndex": 5
+		},
+		{
+			"isStatic": true,
+			"word": "to",
+			"staticIndex": 6
+		},
+		{
+			"isStatic": true,
+			"word": "go",
+			"staticIndex": 7
+		},
+		{
+			"isStatic": false,
+			"label": "verb",
+			"mutableIndex": 1
+		},
+		{
+			"isStatic": true,
+			"word": "ing",
+			"staticIndex": 8
+		},
+		{
+			"isStatic": true,
+			"word": "in",
+			"staticIndex": 9
+		},
+		{
+			"isStatic": true,
+			"word": "the",
+			"staticIndex": 10
+		},
+		{
+			"isStatic": false,
+			"label": "noun",
+			"mutableIndex": 2
+		},
+		{
+			"isStatic": true,
+			"word": "on",
+			"staticIndex": 11
+		},
+		{
+			"isStatic": false,
+			"label": "day of week",
+			"mutableIndex": 3
+		},
+		{
+			"isStatic": true,
+			"word": ".",
+			"staticIndex": null
+		}
+	],
+	"static_count": 12,
+	"mutable_count": 4,
+	"redaction_order": [
+		2,
+		3,
+		1,
+		0
+	],
+	"created_at": "2022-09-17T20:41:33.000Z",
+	"updated_at": "2022-09-17T20:41:33.000Z",
+	"user": {
+		"id": 1,
+		"username": "claudiay"
+	},
+	"fillins": [
+		{
+			"id": 4,
+			"created_at": "2022-09-17T20:41:33.000Z",
+			"user": {
+				"id": 2,
+				"username": "noahb"
+			}
+		}
+	]
+}
+
+
+
