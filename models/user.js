@@ -4,9 +4,10 @@ const sequelize = require('../config/connection');
 
 class User extends Model {
 //bcrypt
-bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash)
-// Store hash in your password DB
-});
+checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
+};
 
 Users.init(
     { id: {
@@ -41,6 +42,10 @@ Users.init(
             newUserData.password = await bcrypt.hash(userData.password, 10).then(newUserData => {
                 return newUserData
             });
+        },
+
+        async beforeUpdate(updatedUserData){
+            updatedUserData.password = await bcrypt.hash(updatedUserData)
         }
 
     },
