@@ -75,14 +75,48 @@ router.get('/:id', async (req, res) => {
             return;
         }
 
-        if (+req.query.redacted)
-            dbTemplateData = dbTemplateData.redactContent(+req.query.lvl)
+        if (+req.query.redactionlvl)
+            dbTemplateData = dbTemplateData.redactContent(+req.query.redactionlvl);
         
         dbTemplateData = dbTemplateData.get({plain: true});
         dbTemplateData.content = JSON.parse(dbTemplateData.content);
         dbTemplateData.redaction_order = JSON.parse(dbTemplateData.redaction_order);
 
         res.json(dbTemplateData);
+    }catch (err){
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+
+// Preview one
+router.post('/preview', async (req, res) => {
+    try {
+        var templateInstance = Template.build({
+            title: req.body.title,
+            content: req.body.content,
+            user_id: 1 // TESTER; should really be: 'user_id: req.session.user_id'
+        });
+        
+        // Mimic the beforeCreate hook
+        processedData = Template.fromString(templateInstance.content);
+            templateInstance.content = JSON.stringify(processedData.contentArr);
+            templateInstance.static_count = processedData.static_count;
+            templateInstance.mutable_count = processedData.mutable_count;
+        templateInstance.redaction_order = JSON.stringify(
+            req.body.redaction_order ||
+            Template.getRedactionOrder()
+        );
+
+        if (+req.query.redactionlvl)
+            templateInstance = templateInstance.redactContent(+req.query.redactionlvl);
+        
+        templateInstance = templateInstance.get({plain: true});
+        templateInstance.content = JSON.parse(templateInstance.content);
+        templateInstance.redaction_order = JSON.parse(templateInstance.redaction_order);
+
+        res.json(templateInstance);
     }catch (err){
         console.log(err);
         res.status(500).json(err);
