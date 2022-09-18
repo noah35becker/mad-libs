@@ -111,10 +111,16 @@ router.get('/:id', async (req, res) => {
 });
 
 
-
 // Create new
 router.post('/', async (req, res) => {
     try {
+        var template = await Template.findByPk(req.body.template_id, {attributes: ['mutable_count']});
+
+        if (template.mutable_count !== req.body.content.length){
+            res.status(400).json({message: 'Number of inputs in this Fillin does not match the number of mutables in the template'});
+            return;
+        }
+
         var dbFillinData = await Fillin.create({
             content: req.body.content,
             template_id: req.body.template_id,
@@ -130,7 +136,7 @@ router.post('/', async (req, res) => {
         });
     }catch (err){
         console.log(err);
-        res.status(400).json(err);
+        res.status(500).json(err);
     }
 });
 
