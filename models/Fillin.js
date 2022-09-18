@@ -2,7 +2,6 @@
 // IMPORTS
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
-const {Template} = require('./');
 
 
 
@@ -49,14 +48,6 @@ Fillin.init(
             beforeCreate: newFillinData => {
                 newFillinData.content = JSON.stringify(newFillinData.content);
                 return newFillinData;
-            },
-            beforeUpdate: updatedFillinData => {
-                updatedFillinData.content = JSON.stringify(updatedFillinData.content);
-                return updatedFillinData;
-            },
-            beforeFind: queriedFillinData => {
-                queriedFillinData.content = JSON.parse(queriedFillinData.content);
-                return queriedFillinData;
             }
         }
     }
