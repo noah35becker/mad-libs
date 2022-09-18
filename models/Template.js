@@ -6,7 +6,7 @@ const _ = require('lodash');
 
 // GLOBAL VARIABLES
 const MUTABLE_DEFAULT_LABEL = 'word';
-const REDACTION_LEVELS = 5;
+const REDACTION_LEVELS = 4; // not including zero-redaction
 
 
 
@@ -102,7 +102,7 @@ class Template extends Model{
     static getRedactionOrder(){
         const output = [];
         
-        for (let i = 0; i < REDACTION_LEVELS - 1; i++)
+        for (let i = 0; i < REDACTION_LEVELS; i++)
             output.push(i);
     
         return _.shuffle(output);
