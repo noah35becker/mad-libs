@@ -2,6 +2,7 @@
 // IMPORTS
 const router = require('express').Router();
 const {Template, Fillin, User} = require('../../models');
+const sequelize = require('../../config/connection');
 const _ = require('lodash');
 
 
@@ -50,7 +51,7 @@ router.get('/', async (req, res) => {
 // Get one
 router.get('/:id', async (req, res) => {
     try {
-        var dbTemplateData = await Template.findByPk(req.params.id, {
+        const findParams = {
             attributes: ['id', 'title', 'content', 'static_count', 'mutable_count', 'redaction_order', 'created_at'],
             include: [
                 {
@@ -59,16 +60,32 @@ router.get('/:id', async (req, res) => {
                 },
                 {
                     model: Fillin,
-                    attributes: ['id', 'created_at', 'content'],
+                    attributes: [
+                        'id',
+                        'created_at',
+                        'content',
+                        [sequelize.literal(`(SELECT COUNT(*) FROM vote WHERE vote.fillin_id = fillins.id)`), 'vote_count']
+                    ],
                     as: 'fillins',
                     include: {
                         model: User,
                         attributes: ['id', 'username']
                     },
                 }
-            ],
-            order: [[{model: Fillin, as: 'fillins'}, 'created_at', 'DESC']] // the default sort order for Fillins within this template
-        });
+            ]
+        };
+
+        findParams.order = [];
+        switch (req.query.sortfillinsby){
+            case 'upvotes':
+                findParams.order.push([sequelize.literal(`(SELECT COUNT(*) FROM vote WHERE vote.fillin_id = fillins.id)`), 'DESC']);
+            case 'mostrecent':
+            default:
+                findParams.order.push([{model: Fillin, as: 'fillins'}, 'created_at', 'DESC']);
+                break;
+        }
+
+        var dbTemplateData = await Template.findByPk(req.params.id, findParams);
 
         if (!dbTemplateData){
             res.status(404).json({message: 'No template found with this ID'});
@@ -85,6 +102,9 @@ router.get('/:id', async (req, res) => {
             fillin.content = JSON.parse(fillin.content);
             return fillin;
         });
+
+        if (req.query.sortfillinsby === 'random')
+            dbTemplateData.fillins = _.shuffle(dbTemplateData.fillins);
 
         res.json(dbTemplateData);
     }catch (err){
