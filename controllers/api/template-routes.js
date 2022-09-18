@@ -59,7 +59,7 @@ router.get('/:id', async (req, res) => {
                 },
                 {
                     model: Fillin,
-                    attributes: ['id', 'created_at'],
+                    attributes: ['id', 'created_at', 'content'],
                     as: 'fillins',
                     include: {
                         model: User,
@@ -81,6 +81,10 @@ router.get('/:id', async (req, res) => {
         dbTemplateData = dbTemplateData.get({plain: true});
         dbTemplateData.content = JSON.parse(dbTemplateData.content);
         dbTemplateData.redaction_order = JSON.parse(dbTemplateData.redaction_order);
+        dbTemplateData.fillins = dbTemplateData.fillins.map(fillin => {
+            fillin.content = JSON.parse(fillin.content);
+            return fillin;
+        });
 
         res.json(dbTemplateData);
     }catch (err){
