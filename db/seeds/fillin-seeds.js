@@ -29,9 +29,11 @@ const fillinsData = [
     }
 ];
 
-const seedFillins = () => Fillin.bulkCreate(
-    fillinsData,
-    {individualHooks: true}
-);
+const seedFillins = async () => {
+    for (const fillin of fillinsData){
+        await Fillin.create(fillin);
+        await new Promise(resolve => setTimeout(resolve, 1000))
+    }
+};
 
 module.exports = seedFillins;
