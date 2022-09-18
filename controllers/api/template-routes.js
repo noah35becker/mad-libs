@@ -119,7 +119,7 @@ router.post('/preview', async (req, res) => {
         res.json(templateInstance);
     }catch (err){
         console.log(err);
-        res.status(500).json(err);
+        res.status(400).json({message: err.message});
     }
 });
 
@@ -143,7 +143,7 @@ router.post('/', async (req, res) => {
         });
     }catch (err){
         console.log(err);
-        res.status(400).json(err);
+        res.status(400).json({message: err.message});
     }
 });
 
