@@ -1,0 +1,56 @@
+:root {
+    --body: linear-gradient(#ddf6f9, rgb(247, 242, 218));
+  }
+  
+  #logo {
+    font-size: 35px;
+    font-family: monospace;
+    display: flex;
+    padding-left: 30px;
+    transition: ease-in-out 1.3s;
+  }
+
+  #logo:hover {
+    font-size: 40px;
+    font-weight: 600;
+  }
+
+  span {
+    color: rgb(241, 182, 72);
+  }
+  
+  .title {
+    padding-left: 20px;
+    text-decoration: none;
+  }
+
+  .title:hover {
+    
+  }
+
+  #nav {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 15px;
+  }
+  
+  .main {
+    background: var(--body);
+    height: 100vh;
+  }
+  
+  .bcs {
+    font-size: 17px;
+    color: rgb(247, 208, 13);
+  }
+  
+  .w3-hover-opacity {
+    margin: 10px;
+    font-size: 21px;
+  }
+  
+  .policy {
+    font-size: 17px;
+    color: rgb(41, 192, 247);
+  }
+  
