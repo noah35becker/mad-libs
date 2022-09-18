@@ -31,82 +31,62 @@ class Word{
 class Template extends Model{
     // Convert string to array of Words
     static fromString(input){
-        function getIndicesOfSquareBrackets(){
-            var output = [];
-            
-            let bracketPair = {};
-            let closingBracketNext = false;
-
-            for (let i = 0; i < input.length; i++)
-                if (input[i] === '['){
-                    if (!closingBracketNext){
-                        bracketPair.startBracket = i;
-                        closingBracketNext = true;
-                    } else
-                        return undefined;
-                } else if (input[i] === ']'){
-                    if (closingBracketNext){
-                        bracketPair.stopBracket = i;
-                        output.push(bracketPair);
-                        
-                        closingBracketNext = false;
-                        bracketPair = {};
-                    } else
-                        return undefined;
-                }
-            
-            return output;
-        }
-
-        function isAlphanumeric(word){
-            for (let i = 0; i < word.length; i++){
-                let cc = word.charCodeAt(i);
-                if ((cc >= 48 && cc <= 57) || (cc >= 65 && cc <= 90) || (cc >= 97 && cc <= 122))
-                    return true;
-            }
-            return false;
-        }
-
         const arr = [];
         input = input.trim();
 
-        const squareBracketIndices =  getIndicesOfSquareBrackets();
-        if (!squareBracketIndices)
-            throw new Error('Square brackets are not properly formatted');
+        let squareBrackets = input.match(/[\[\]]/ig);
+        if (!squareBrackets || squareBrackets.length < 2)
+                throw new Error('There must be at least one mutable');    
+        squareBrackets.forEach((element, index) => {
+            if (
+                    (!(index % 2) && element !== '[') // even-indexed
+                ||
+                    (index % 2 && element !== ']') // odd-indexed
+            )
+                throw new Error('Square brackets are not properly formatted');
+        });
 
         const mutables = [];
-        let inputNoMutables = input;
-        for (const bracketPair of squareBracketIndices){
-            let mutableString = input.substring(bracketPair.startBracket + 1, bracketPair.stopBracket);
-            mutables.push(mutableString.trim() || MUTABLE_DEFAULT_LABEL);
-            inputNoMutables = inputNoMutables.replace(`[${mutableString}]`, '[]');
+        const mutablesRegExp = RegExp(/\[((?!\[).)*\]/, 'ig');
+        let mutableLabel;
+        const indexPairsToRemove = [];
+
+        while ((mutableLabel = mutablesRegExp.exec(input)) !== null){
+            mutables.push(
+                    mutableLabel[0].slice(1, -1).trim()
+                ||
+                    MUTABLE_DEFAULT_LABEL
+            );
+            indexPairsToRemove.push([mutablesRegExp.lastIndex - mutableLabel[0].length + 1, mutablesRegExp.lastIndex - 1]);
         }
 
-        const split = inputNoMutables
-            .replaceAll('[]', ' [] ')
-            .split(' ');
+        let inputNoMutables = input;
+        _.forEachRight(indexPairsToRemove, value => 
+            inputNoMutables =
+                inputNoMutables.substring(0, value[0])
+                + inputNoMutables.substring(value[1])
+        );
+
+        const split = inputNoMutables.match(RegExp(/[\[\]]{2}|\b[a-z0-9']+\b|((?!\[\]|\s+)\W)+/, 'ig'));
         var staticIndex = 0, mutableIndex = 0;
-        for (var word of split){
-            word = word.trim();
-            if (word)
-                if (word === '[]'){
-                    arr.push(new Word(
-                        {
-                            isStatic: false,
-                            label: mutables[mutableIndex]
-                        },
-                        mutableIndex
-                    ));
-                    mutableIndex++;
-                } else {
-                    arr.push(new Word(
-                        {
-                            isStatic: true,
-                            word: word
-                        },
-                            isAlphanumeric(word) ? staticIndex++ : null
-                    ));
-                }
+        for (var elem of split){
+            if (elem === '[]'){
+                arr.push(new Word(
+                    {
+                        isStatic: false,
+                        label: mutables[mutableIndex]
+                    },
+                    mutableIndex
+                ));
+                mutableIndex++;
+            } else
+                arr.push(new Word(
+                    {
+                        isStatic: true,
+                        word: elem
+                    },
+                        /[A-Za-z0-9]/.test(elem) ? staticIndex++ : null
+                ));
         }
 
         return {
