@@ -1,0 +1,45 @@
+
+/*VARIABLES*/
+:root{
+    --color-red: rgb(175, 8, 8);
+    --color-red-lighter: rgba(217, 135, 139);
+}
+
+
+/* REDACTION SLIDER */
+.slider{
+    -webkit-appearance: none;
+    appearance: none;
+    height: 15px;
+    border-radius: 15px;
+    outline: none;
+    background-color: lightgrey;
+    margin-top: 10px;
+}
+
+.slider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    background-color: var(--color-red-lighter);
+    cursor: pointer;
+    -webkit-transition: 200ms;
+    transition: background-color 200ms;
+}
+.slider::-webkit-slider-thumb:hover, .slider:focus::-webkit-slider-thumb{
+    background-color: var(--color-red);
+}
+
+.slider::-moz-range-thumb{
+    width: 25px;
+    height: 25px;
+    background-color: var(--color-red-lighter);
+    cursor: pointer;
+    -webkit-transition: 200ms;
+    transition: background-color 200ms;
+}
+.slider::-moz-range-thumb:hover, .slider:focus::-moz-range-thumb{
+    background-color: var(--color-red);
+}
