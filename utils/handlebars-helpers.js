@@ -13,7 +13,9 @@ module.exports = {
     
     is_space_char: string => string === ' ',
 
-    redaction_slider_width: redactionLvls => Math.min((redactionLvls + 1) * 26, 200), 
+    redaction_slider_width: redactionLvls => Math.min((redactionLvls + 1) * 33, 225),
+
+    invert_redaction_val: (thisLvl, totalLvls) => totalLvls - thisLvl,
 
     compare: (a, b) => a === b
 };
