@@ -1,0 +1,26 @@
+<form class="template">
+    <header>
+        <h3>{{title}}</h3>
+        <h4>by {{user.username}}</h4>
+    </header>
+
+    <div class="template-body">
+        {{#each content as |elem|}}
+            {{#if elem.isStatic}}
+                {{#if (is_space_char elem.word)}}
+                    &nbsp;
+                {{else if (compare elem.staticIndex null)}}
+                    {{elem.word}}
+                {{else}}
+                    <span class="static">{{elem.word}}</span>
+                {{/if}}
+                    
+                
+            {{else if elem.isRedacted}}
+                <span class="redacted">{{redaction_string elem.redactedString}}</span>
+            {{else}}
+                <span class="mutable"><input type="text" mutable-index="{{elem.mutableIndex}}" placeholder="{{elem.label}}" /></span>
+            {{/if}}
+        {{/each}}
+    </div>
+</form>

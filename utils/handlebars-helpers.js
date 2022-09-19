@@ -9,6 +9,10 @@ module.exports = {
 
     format_plural: (word, quantity) => quantity === 1 ? word : word+'s',
 
+    redaction_string: string => string.replaceAll(' ', '_'),
+    
+    is_space_char: string => string === ' ',
+
     redaction_slider_width: redactionLvls => Math.min((redactionLvls + 1) * 26, 200), 
 
     compare: (a, b) => a === b

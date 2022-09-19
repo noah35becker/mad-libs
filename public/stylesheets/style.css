@@ -21,7 +21,7 @@ body{
 
 
 /* HEADER */
-header{
+.site-header{
     display: flex;
     justify-content: space-between;
 }
@@ -135,6 +135,21 @@ main{
 }
 .slider::-moz-range-thumb:hover, .slider:focus::-moz-range-thumb{
     background-color: var(--color-red);
+}
+
+
+
+/* TEMPLATE */
+.template-body span{
+    font-family: monospace;
+}
+.template-body span.mutable input{
+    font-family: 'Raleway', sans-serif;
+    color: blue;
+}
+
+.redacted{
+    background-color: black;
 }
 
 
