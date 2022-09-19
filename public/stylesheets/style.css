@@ -28,6 +28,9 @@ input:not(.slider){
     border-radius: 8px;
     padding-left: 7px;
 }
+.meta{
+    font-style: italic;
+}
 
 
 
@@ -135,9 +138,11 @@ main{
 .template-body span{
     font-family: monospace;
 }
-.template-body span.mutable input{
+.template-body span.mutable{
     font-family: 'Raleway', sans-serif;
     color: blue;
+}
+.template-body span.mutable input{
     height: 30px;
     margin-bottom: 9px;
     width: 160px;

@@ -1,10 +1,15 @@
 {{#with template}}
-    <form class="template">
+    <form
+        class="template"
+        {{#if ../fillin}}
+            fillin-id="{{../fillin.id}}"
+        {{/if}}
+    >
         <header>
             <h3>{{title}}</h3>
             <div class="subheader">
                 <h5>By <i>{{user.username}}</i></h5>
-                {{>redaction-slider redactionLvls=redaction_order.length redactionLvl=../redactionLvl}}
+                {{>redaction-slider redactionLvls=redaction_order.length}}
             </div>
         </header>
 
@@ -20,12 +25,10 @@
                     {{else}}
                         <span class="static">{{elem.word}}</span>
                     {{/if}}
-                        
-                    
                 {{else if elem.isRedacted}}
                     <span class="redacted">{{redaction_string elem.redactedString}}</span>
                 {{else}}
-                    <span class="mutable"><input type="text" mutable-index="{{elem.mutableIndex}}" placeholder="{{elem.label}}" /></span>
+                    <span class="mutable" mutable-index="{{elem.mutableIndex}}"><input type="text" placeholder="{{elem.label}}" /></span>
                 {{/if}}
             {{/each}}
         </div>
