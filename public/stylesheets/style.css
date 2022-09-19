@@ -1,4 +1,4 @@
-/* VARIABLES */
+/* GLOBAL VARIABLES */
 :root{
     --color-red: rgb(175, 8, 8);
     --color-red-lighter: rgba(217, 135, 139);
@@ -6,6 +6,15 @@
 }
 
   
+/* BODY */
+body{
+    background-image: radial-gradient(ellipse at 37% 30%, rgb(163, 221, 218), rgb(255, 169, 169));
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
 /* HEADER */
 header{
     display: flex;
@@ -52,10 +61,10 @@ header{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     flex-grow: 0;
 }
-#nav a{
+#nav a, #nav button{
     transition: .2s;
 }
-#nav a:hover{
+#nav a:hover, #nav button:hover{
     background-color: inherit !important;
     color: red !important;
     text-shadow: 2px 2px 8px white;
@@ -63,8 +72,11 @@ header{
 
 
 /* LOGIN MODAL */
+#login-modal span.close-modal{
+    transition: .2s;
+}
 .login-form div button[type="submit"]{
-    transition: .8s;
+    transition: .2s;
 }
 
 .login-form div button[type="submit"]:hover{
@@ -73,14 +85,10 @@ header{
 
 
 
-/* BODY */
-body{
-    background-image: radial-gradient(ellipse at 37% 30%, rgb(163, 221, 218), rgb(255, 169, 169));
+/* MAIN */
+main{
+    flex-grow: 1;
 }
-
-
-
-
   
 
 
