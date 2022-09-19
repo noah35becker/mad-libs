@@ -68,7 +68,7 @@ class Template extends Model{
                 + inputNoMutables.substring(value[1])
         );
 
-        const split = inputNoMutables.match(RegExp(/[\[\]]{2}|\b[a-z0-9']+\b|((?!\[\]|\s+)\W)+/, 'ig'));
+        const split = inputNoMutables.match(RegExp(/\[\]|\b[a-z0-9']+\b|((?!(\[\]|\s))\W)+|\s+/, 'ig'));
         var staticIndex = 0, mutableIndex = 0;
         for (var elem of split){
             if (elem === '[]'){
@@ -84,7 +84,7 @@ class Template extends Model{
                 arr.push(new Word(
                     {
                         isStatic: true,
-                        word: elem
+                        word: (elem.trim() ? elem : ' ')
                     },
                         /[A-Za-z0-9]/.test(elem) ? staticIndex++ : null
                 ));
