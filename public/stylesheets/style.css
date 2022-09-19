@@ -1,4 +1,4 @@
-/*VARIABLES*/
+/* VARIABLES */
 :root{
     --color-red: rgb(175, 8, 8);
     --color-red-lighter: rgba(217, 135, 139);
@@ -6,53 +6,81 @@
 }
 
   
-#logo {
+/* HEADER */
+header{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#logo{
     font-size: 35px;
     font-family: monospace;
-    display: flex;
     padding-left: 30px;
-    transition: ease-in-out 1.3s;
-}
-
-#logo:hover {
-    font-size: 40px;
-    font-weight: 600;
-}
-
-span {
-    color: rgb(241, 182, 72);
-}
-
-.title {
-    padding-left: 20px;
     text-decoration: none;
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    padding-bottom: 8px;
 }
+#logo img{
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    margin-right: 20px;
+}
+#logo .title{
+    display: inline-block;
+}
+#logo .title span{
+    transition: ease-in-out .3s;
+}
+#logo .title .libs{
+    color: red;
+}
+
+#logo:hover .mad{
+    color: red;
+}
+#logo:hover .libs{
+    color: black;
+}
+
 
 #nav {
     font-size: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 15px;
+    flex-grow: 0;
+}
+#nav a{
+    transition: .2s;
+}
+#nav a:hover{
+    background-color: inherit !important;
+    color: red !important;
+    text-shadow: 2px 2px 8px white;
 }
 
-.main {
-    background: var(--body-background);
-    height: 100vh;
+
+/* LOGIN MODAL */
+.login-form div button[type="submit"]{
+    transition: .8s;
 }
 
-.bcs {
-    font-size: 17px;
-    color: rgb(247, 208, 13);
+.login-form div button[type="submit"]:hover{
+    background-color: rgb(0, 166, 255) !important;
 }
 
-.w3-hover-opacity {
-    margin: 10px;
-    font-size: 21px;
+
+
+/* BODY */
+body{
+    background-image: radial-gradient(ellipse at 37% 30%, rgb(163, 221, 218), rgb(255, 169, 169));
 }
 
-.policy {
-    font-size: 17px;
-    color: rgb(41, 192, 247);
-}
+
+
+
   
 
 
