@@ -1,7 +1,7 @@
 
 /* GLOBAL VARIABLES */
 :root{
-    --red: rgb(175, 8, 8);
+    --red: rgb(202, 0, 0);
     --red-lighter: rgb(170, 83, 87);
     --blue: rgb(0, 84, 149); 
     --blue-lighter: rgb(98, 146, 153);
@@ -119,6 +119,7 @@ main{
     background-color: rgb(255, 212, 156);
     max-width: 600px;
     min-width: 300px;
+    border: 1px solid rgb(91, 91, 91);
     border-radius: 8px;
 }
 .template .subheader{
@@ -142,9 +143,15 @@ main{
     width: 160px;
 }
 
+.redacted, .static{
+    padding: 4px 1px;
+}
 .redacted{
     background-color: black;
+    border-radius: 5px;
+    cursor: help;
 }
+
 
 
 

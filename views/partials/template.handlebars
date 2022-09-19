@@ -14,9 +14,9 @@
             {{#each content as |elem|}}
                 {{#if elem.isStatic}}
                     {{#if (is_space_char elem.word)}}
-                        &emsp13;
+                        &puncsp;
                     {{else if (compare elem.staticIndex null)}}
-                        {{elem.word}}
+                        <b>{{elem.word}}</b>
                     {{else}}
                         <span class="static">{{elem.word}}</span>
                     {{/if}}
