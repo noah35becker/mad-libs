@@ -4,17 +4,19 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,500;1,300;1,500&display=swap" />
         <link rel="stylesheet" href="./stylesheets/style.css" />
+
         <link rel="icon" type="image/x-icon" href="/images/madlibs-logo-white.png" />
 
         <title>Mad Libs{{#if page-subtitle}} | {{page-subtitle}}{{/if}}</title>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
     </head>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    {{!-- This jQuery import must precede <main>, because scripts are occasionally inserted there via handlebars --}}
 
     <body>
         <header class="w3-padding-16">
@@ -31,7 +33,7 @@
                     <a href="/dashboard" class="w3-button w3-mobile">Dashboard</a>
                     <button href="/logout" class="w3-button w3-mobile">Logout</button>
                 {{else}}
-                    <button href="/login" onclick="document.getElementById('login-modal').style.display='block'" class="w3-button w3-mobile">Login</button>
+                    <button class="nav-login w3-button w3-mobile">Login</button>
                 {{/if}}
             </nav>
         </header>
@@ -41,7 +43,7 @@
                 <div class="w3-modal-content w3-card-4 w3-animate-zoom w3-sand" style="max-width: 600px">
                     <div class="w3-center">
                         <br />
-                        <span onclick="document.getElementById('login-modal').style.display='none'" class="close-modal w3-button w3-xlarge w3-hover-red w3-display-topright">&times;</span>
+                        <span class="close-modal w3-button w3-xlarge w3-hover-red w3-display-topright">&times;</span>
                         <img src="/images/madlibs-logo-black.png" alt="logo" style="width: 30%" class="w3-circle w3-margin-top" />
                     </div>
 
@@ -77,9 +79,12 @@
         </main>
 
         <footer class="w3-padding-16 w3-center">
-            <i>Designed and coded by Claudia Yile, Min Maung and Noah Becker | &copy; <span class="this-yr"></span></i>
+            <i>Designed and coded by Claudia Yile, Min Maung and Noah Becker&nbsp;&nbsp;</i>&nbsp;&nbsp;&copy; <span class="this-yr"></span>
         </footer>
 
         <script src="/javascript/footer.js"></script>
+        {{#unless loggedIn}}
+            <script src="/javascript/login.js"></script>
+        {{/unless}}
     </body>
 </html>

@@ -1,3 +1,4 @@
+
 /* GLOBAL VARIABLES */
 :root{
     --color-red: rgb(175, 8, 8);
@@ -5,14 +6,18 @@
     --body-background: linear-gradient(#ddf6f9, rgb(247, 242, 218));
 }
 
+
   
 /* BODY */
 body{
+    background-color: aliceblue; /* fallback */
     background-image: radial-gradient(ellipse at 37% 30%, rgb(163, 221, 218), rgb(255, 169, 169));
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Raleway', sans-serif;
 }
+
 
 
 /* HEADER */
@@ -40,6 +45,7 @@ header{
 }
 #logo .title{
     display: inline-block;
+    padding-bottom: 2px;
 }
 #logo .title span{
     transition: ease-in-out .3s;
@@ -58,17 +64,18 @@ header{
 
 #nav {
     font-size: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     flex-grow: 0;
 }
 #nav a, #nav button{
     transition: .2s;
+    font-weight: 500;
 }
 #nav a:hover, #nav button:hover{
     background-color: inherit !important;
     color: red !important;
     text-shadow: 2px 2px 8px white;
 }
+
 
 
 /* LOGIN MODAL */
@@ -128,4 +135,11 @@ main{
 }
 .slider::-moz-range-thumb:hover, .slider:focus::-moz-range-thumb{
     background-color: var(--color-red);
+}
+
+
+
+/* FOOTER */
+footer i{
+    border-right: 1px solid black;
 }
