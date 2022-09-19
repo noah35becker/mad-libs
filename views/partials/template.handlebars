@@ -2,16 +2,19 @@
     <form class="template">
         <header>
             <h3>{{title}}</h3>
-            <h4>by {{user.username}}</h4>
+            <div class="subheader">
+                <h5>By <i>{{user.username}}</i></h5>
+                {{>redaction-slider redactionLvls=redaction_order.length redactionLvl=../redactionLvl}}
+            </div>
         </header>
 
-        {{>redaction-slider redactionLvls=redaction_order.length redactionLvl=../redactionLvl}}
+        <hr />
 
         <div class="template-body">
             {{#each content as |elem|}}
                 {{#if elem.isStatic}}
                     {{#if (is_space_char elem.word)}}
-                        &nbsp;
+                        &emsp13;
                     {{else if (compare elem.staticIndex null)}}
                         {{elem.word}}
                     {{else}}
