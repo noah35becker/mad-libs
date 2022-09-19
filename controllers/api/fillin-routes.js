@@ -31,14 +31,14 @@ router.get('/', async (req, res) => {
             ]
         };
 
-       if (req.query.templateid)
-            findParams.where = {template_id: +req.query.templateid};
+       if (req.query.templateId)
+            findParams.where = {template_id: +req.query.templateId};
         
         findParams.order = [];
-        switch (req.query.sortby){
+        switch (req.query.sortBy){
             case 'upvotes':
                 findParams.order.push(['vote_count', 'DESC']);
-            case 'mostrecent':
+            case 'mostRecent':
             default:
                 findParams.order.push(['created_at', 'DESC']);
                 break;
@@ -46,7 +46,7 @@ router.get('/', async (req, res) => {
         
         var dbFillinsData = await Fillin.findAll(findParams);
 
-        if (req.query.sortby === 'random')
+        if (req.query.sortBy === 'random')
             dbFillinsData = _.shuffle(dbFillinsData);
 
         dbFillinsData = dbFillinsData.map(fillin => {

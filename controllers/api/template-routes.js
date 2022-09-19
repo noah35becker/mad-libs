@@ -30,12 +30,12 @@ router.get('/', async (req, res) => {
                 }
             ],
             order: [
-                ['created_at', 'DESC'], // the default sort order for Templates (may be shuffled, see below)
+                ['created_at', 'DESC'], // the default sort order for Templates, even if req.query.sortBy === 'mostRecent' (may be shuffled after getting, see below)
                 [{model: Fillin, as: 'fillins'}, 'created_at', 'DESC'] // the default sort order for Fillins within each template
             ]
         });
 
-        if (req.query.sortby === 'random')
+        if (req.query.sortBy === 'random')
             dbTemplatesData = _.shuffle(dbTemplatesData);
 
         dbTemplatesData = dbTemplatesData.map(template => template.get({plain: true}));
@@ -76,10 +76,10 @@ router.get('/:id', async (req, res) => {
         };
 
         findParams.order = [];
-        switch (req.query.sortfillinsby){
+        switch (req.query.sortFillinsBy){
             case 'upvotes':
                 findParams.order.push([sequelize.literal(`(SELECT COUNT(*) FROM vote WHERE vote.fillin_id = fillins.id)`), 'DESC']);
-            case 'mostrecent':
+            case 'mostRecent':
             default:
                 findParams.order.push([{model: Fillin, as: 'fillins'}, 'created_at', 'DESC']);
                 break;
@@ -92,8 +92,8 @@ router.get('/:id', async (req, res) => {
             return;
         }
 
-        if (+req.query.redactionlvl)
-            dbTemplateData = dbTemplateData.redactContent(+req.query.redactionlvl);
+        if (+req.query.redactionLvl)
+            dbTemplateData = dbTemplateData.redactContent(+req.query.redactionLvl);
         
         dbTemplateData = dbTemplateData.get({plain: true});
         dbTemplateData.content = JSON.parse(dbTemplateData.content);
@@ -103,7 +103,7 @@ router.get('/:id', async (req, res) => {
             return fillin;
         });
 
-        if (req.query.sortfillinsby === 'random')
+        if (req.query.sortFillinsBy === 'random')
             dbTemplateData.fillins = _.shuffle(dbTemplateData.fillins);
 
         res.json(dbTemplateData);
@@ -133,8 +133,8 @@ router.post('/preview', async (req, res) => {
             Template.getRedactionOrder()
         );
 
-        if (+req.query.redactionlvl)
-            templateInstance = templateInstance.redactContent(+req.query.redactionlvl);
+        if (+req.query.redactionLvl)
+            templateInstance = templateInstance.redactContent(+req.query.redactionLvl);
         
         templateInstance = templateInstance.get({plain: true});
         templateInstance.content = JSON.parse(templateInstance.content);
