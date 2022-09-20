@@ -82,6 +82,14 @@ input:not(.slider){
     transition: .2s;
     font-weight: 500;
 }
+.dropdown-arrow{
+    font-size: 13px;
+}
+.w3-dropdown-content a{
+    font-size: 16px;
+    padding: 4px 8px !important;
+}
+
 #nav a:hover, #nav button:hover{
     background-color: inherit !important;
     color: red !important;

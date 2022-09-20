@@ -31,8 +31,30 @@
 
             <nav id="nav" class="w3-right-align w3-padding">
                 <a href="/" class="w3-button w3-mobile">Home</a>
+                
+                <div class="w3-dropdown-hover">
+                <a class="w3-button">Templates<span class="dropdown-arrow">&nbsp;&nbsp;&#9660;</span></a>
+                    <div class="w3-dropdown-content w3-bar-block w3-border">
+                        {{#if loggedIn}}
+                            <a href="#" class="w3-bar-item w3-button">Template maker</a>
+                        {{/if}}
+                        <a href="#" class="w3-bar-item w3-button">See user-created templates</a>
+                    </div>
+                </div>
+
+                <div class="w3-dropdown-hover">
+                <a class="w3-button">Fill-ins<span class="dropdown-arrow">&nbsp;&nbsp;&#9660;</span></a>
+                    <div class="w3-dropdown-content w3-bar-block w3-border">
+                        {{#if loggedIn}}
+                            <a href="#" class="w3-bar-item w3-button">Fill in a template</a>
+                        {{/if}}
+                        <a href="#" class="w3-bar-item w3-button">See user fill-ins</a>
+                    </div>
+                </div>
+                
                 {{#if loggedIn}}
                     <a href="/dashboard" class="w3-button w3-mobile">Dashboard</a>
+
                     <button href="/logout" class="w3-button w3-mobile">Logout</button>
                 {{else}}
                     <button class="nav-login w3-button w3-mobile">Login</button>
