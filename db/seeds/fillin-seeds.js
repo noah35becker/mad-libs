@@ -13,6 +13,11 @@ const fillinsData = [
         user_id: 2
     },
     {
+        template_id: 2,
+        content: ['plaintains', 'mice'],
+        user_id: 3
+    },
+    {
         template_id: 3,
         content: ['handbags', 'ugliest'],
         user_id: 3
@@ -24,9 +29,11 @@ const fillinsData = [
     }
 ];
 
-const seedFillins = () => Fillin.bulkCreate(
-    fillinsData,
-    {individualHooks: true}
-);
+const seedFillins = async () => {
+    for (const fillin of fillinsData){
+        await Fillin.create(fillin);
+        await new Promise(resolve => setTimeout(resolve, 1000))
+    }
+};
 
 module.exports = seedFillins;

@@ -29,6 +29,7 @@ class Word{
 
 // Create the Template model
 class Template extends Model{
+
     // Convert string to array of Words
     static fromString(input){
         const arr = [];
@@ -67,7 +68,7 @@ class Template extends Model{
                 + inputNoMutables.substring(value[1])
         );
 
-        const split = inputNoMutables.match(RegExp(/[\[\]]{2}|\b[a-z0-9']+\b|((?!\[\]|\s+)\W)+/, 'ig'));
+        const split = inputNoMutables.match(RegExp(/\[\]|\b[a-z0-9']+\b|((?!(\[\]|\s))\W)+|\s+/, 'ig'));
         var staticIndex = 0, mutableIndex = 0;
         for (var elem of split){
             if (elem === '[]'){
@@ -83,7 +84,7 @@ class Template extends Model{
                 arr.push(new Word(
                     {
                         isStatic: true,
-                        word: elem
+                        word: (elem.trim() ? elem : ' ')
                     },
                         /[A-Za-z0-9]/.test(elem) ? staticIndex++ : null
                 ));
@@ -108,27 +109,29 @@ class Template extends Model{
     }
 
 
-    // Return this template's "content" redacted to the level of redactionLvl (0 = no redaction)
+    // Return this template with its "content" redacted to the level of redactionLvl (0 = no redaction)
     redactContent(redactionLvl){
-        var content = JSON.parse(this.content);
+        var redactedContent = JSON.parse(this.content);
         let redaction_order = JSON.parse(this.redaction_order);
     
         for (let i = 0; i < redactionLvl; i++){
             for (let r = redaction_order[i]; r < this.static_count; r += redaction_order.length){
-                let wordIndex = content.findIndex(elem => elem.staticIndex === r);
-                let word = content[wordIndex].word;
-                let redacted = '';
+                let wordIndex = redactedContent.findIndex(elem => elem.staticIndex === r);
+                let word = redactedContent[wordIndex].word;
+                let redactedSpaces = '';
                 for (let x = 1; x <= word.length; x++)
-                    redacted += ' ';    
+                    redactedSpaces += ' ';    
                 
-                content[wordIndex] = {
+                redactedContent[wordIndex] = {
                     isRedacted: true,
-                    redactedString: redacted,
+                    redactedString: redactedSpaces
                 }
             }
         }
 
-        return content;
+        this.content = JSON.stringify(redactedContent);
+
+        return this;
     }
 }
 
@@ -151,7 +154,7 @@ Template.init(
             }
         },
         content: {
-            type: DataTypes.JSON, // this will be an array of Words, and only converted to JSON upon beforeCreate or beforeUpdate (see hooks below)
+            type: DataTypes.JSON, // this will be an array of Words, and only converted to JSON upon beforeCreate (see hooks below)
             allowNull: false
         },
         static_count: {
@@ -190,11 +193,6 @@ Template.init(
                 newTemplateData.redaction_order = JSON.stringify(Template.getRedactionOrder());
 
                 return newTemplateData;
-            },
-            beforeFind: queriedTemplateData => {
-                queriedTemplateData.content = JSON.parse(queriedTemplateData.content);
-                queriedTemplateData.redaction_order = JSON.parse(queriedTemplateData.redaction_order);
-                return queriedTemplateData;
             }
         }
     }
