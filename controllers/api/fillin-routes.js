@@ -129,7 +129,7 @@ router.post('/', async (req, res) => {
         var dbFillinData = await Fillin.create({
             content: req.body.content,
             template_id: req.body.template_id,
-            user_id: 1 // TESTER; should really be: 'user_id: req.session.user_id'
+            user_id: req.session.user_id
         });
      
         dbFillinData = dbFillinData.get({plain: true});

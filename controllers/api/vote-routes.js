@@ -12,12 +12,12 @@ router.get('/check', async (req, res) => {
     try{
         var dbVoteData = await Vote.findOne({
             where: {
-                user_id: +req.query.userId,
+                user_id: +req.session.user_id,
                 fillin_id: +req.query.fillinId
             }
         });
 
-        res.json({message: (dbVoteData ? true : false)});
+        res.json({status: (dbVoteData ? true : false)});
     }catch (err){
         console.log(err);
         res.status(500).json(err);

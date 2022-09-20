@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
         const dbCommentData = await Comment.create({
             content: req.body.content,
             fillin_id: req.body.fillin_id,
-            user_id: 1 // TESTER; should really be: 'user_id: req.session.user_id'
+            user_id: req.session.user_id
         });
 
         res.json({
