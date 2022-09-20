@@ -1,289 +1,19 @@
 
-/* GLOBAL VARIABLES */
+/*VARIABLES*/
 :root{
-    --red: rgb(202, 0, 0);
-    --red-lighter: rgb(170, 83, 87);
-    --blue: rgb(0, 84, 149); 
-    --blue-medium: rgb(0, 166, 255);
-    --blue-lighter: rgb(98, 146, 153);
-    --template-bkgd-color: rgb(255, 212, 156);
-    --template-border: 1px solid rgb(91, 91, 91);
+    --color-red: rgb(175, 8, 8);
+    --color-red-lighter: rgba(217, 135, 139);
 }
-
-
-  
-/* GENERAL */
-body{
-    background-color: aliceblue; /* fallback */
-    background-image: radial-gradient(ellipse at 37% 30%, rgb(163, 221, 218), rgb(255, 169, 169));
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-body, h1, h2, h3, h4, h5, h6, p, a{
-    font-family: 'Raleway', sans-serif;
-}
-hr{
-    margin: 15px 0;
-    border-top-color: lightgray;
-}
-input:not(.slider), textarea{
-    border: 1px solid black;
-    border-radius: 8px;
-    padding-left: 7px;
-}
-main{
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-
-/* HEADER */
-.site-header{
-    display: flex;
-    justify-content: space-between;
-}
-
-
-#logo{
-    font-size: 35px;
-    font-family: monospace;
-    padding-left: 30px;
-    text-decoration: none;
-    flex-grow: 0;
-    display: flex;
-    align-items: center;
-    padding-bottom: 8px;
-}
-#logo img{
-    height: 50px;
-    width: 50px;
-    display: inline-block;
-    margin-right: 20px;
-}
-#logo .title{
-    display: inline-block;
-    padding-bottom: 2px;
-}
-#logo .title span{
-    transition: ease-in-out .3s;
-}
-#logo .title .libs{
-    color: red;
-}
-
-#logo:hover .mad{
-    color: red;
-}
-#logo:hover .libs{
-    color: black;
-}
-
-
-#nav {
-    font-size: 20px;
-    flex-grow: 0;
-}
-#nav a, #nav button{
-    transition: .2s;
-    font-weight: 500;
-}
-.dropdown-arrow{
-    font-size: 13px;
-}
-.w3-dropdown-content a{
-    font-size: 16px;
-    padding: 4px 8px !important;
-}
-
-#nav a:hover, #nav button:hover{
-    background-color: inherit !important;
-    color: red !important;
-    text-shadow: 2px 2px 8px white;
-}
-
-
-
-/* LOGIN MODAL */
-#login-modal span.close-modal{
-    transition: .2s;
-}
-.login-form div button[type="submit"]{
-    transition: .2s;
-}
-
-.login-form div button[type="submit"]:hover{
-    background-color: var(--blue-medium) !important;
-}
-
-
-
-/* TEMPLATE MAKER */
-.template-maker{
-    text-align: center;
-    max-width: 800px;
-    min-width: 425px;
-    margin: 0px 30px;
-    text-align: center;
-    background-color: var(--template-bkgd-color);
-    border: var(--template-border);
-    border-radius: 8px;
-    padding-top: 20px;
-}
-
-.template-maker .instructions{
-    line-height: 1.8;
-    width: fit-content;
-    padding: 0 25px;
-    margin: 0 auto;
-}
-.template-maker .instructions span{
-    font-family: monospace;
-    font-size: 16px;
-}
-
-.edit-preview-toggle{
-    display: flex;
-    justify-content: center;
-    margin-top: 13px;
-}
-.edit-preview-toggle #preview{
-    margin-left: 15px;
-}
-.edit-preview-toggle label{
-    margin-left: 5px;
-}
-
-.template-maker input[name="title"]{
-    margin-top: 8px;
-}
-
-.template-maker textarea{
-    margin: 10px 0;
-    width: 90%;
-    min-height: 300px;
-    resize: none;
-    color: blue;
-    font-family: monospace;
-    padding-top: 5px;
-}
-
-.preview-window{
-    padding: 0 20px;
-}
-
-
-
-
-/* TEMPLATE VIEWER */
-.template{
-    text-align: center;
-    background-color: var(--template-bkgd-color);
-    border: var(--template-border);
-    border-radius: 8px;
-}
-.template header h3 span{
-    font-size: 18px;
-}
-.template .subheader{
-    text-align: center;
-}
-.template-body{
-    max-width: 600px;
-    min-width: 300px;
-    padding: 10px 20px;
-    text-align: left;
-    line-height: 1.8;
-    font-size: 18px;
-}
-.template-body span{
-    font-family: monospace;
-}
-.template-body span.mutable{
-    font-family: 'Raleway', sans-serif;
-    color: blue;
-}
-.template-body span.mutable input{
-    font-family: 'Raleway', sans-serif;
-    color: blue;
-    height: 30px;
-    margin-bottom: 9px;
-    width: 160px;
-}
-
-.redacted, .static{
-    padding: 4px 1px;
-}
-.redacted{
-    background-color: black;
-    border-radius: 5px;
-    cursor: help;
-}
-
-
-.fillin-submit-btn, .template-maker-submit-btn{
-    margin: 10px 0 15px;
-    padding: 5px 13px;
-    color: white;
-    background-color: rgb(0, 150, 0);
-    border: 1px solid black;
-    border-radius: 10px;
-    transition: .2s;
-}
-.fillin-submit-btn:hover, .template-maker-submit-btn:hover{
-    border-color: white;
-    background-color: var(--blue-medium);
-}
-
-.fillin-meta{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    text-align: center;
-}
-.fillin-meta p{
-    color: blue;
-    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), white, rgba(255, 0, 0, 0));
-    width: fit-content;
-    margin: 15px 0;
-    padding: 8px 25px;
-}
-
-.votes{
-    font-size: 20px;
-    margin: 0 20px;
-}
-.votes a{
-    cursor: pointer;
-}
-.votes[current-user-voted] a{
-    color: green;
-}
-
-
 
 
 /* REDACTION SLIDER */
-.redaction-slider{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.redaction-slider label{
-    color: var(--blue);
-    padding-top: 5px;
-}
 .slider{
     -webkit-appearance: none;
     appearance: none;
     height: 15px;
     border-radius: 15px;
     outline: none;
-    background-image: linear-gradient(to right, var(--blue-lighter), var(--blue));
+    background-color: lightgrey;
     margin-top: 10px;
 }
 
@@ -293,32 +23,23 @@ main{
     width: 25px;
     height: 25px;
     border-radius: 25px;
-    border: 1px solid black;
-    background-color: var(--red-lighter);
+    background-color: var(--color-red-lighter);
     cursor: pointer;
     -webkit-transition: 200ms;
     transition: background-color 200ms;
 }
 .slider::-webkit-slider-thumb:hover, .slider:focus::-webkit-slider-thumb{
-    background-color: var(--red);
+    background-color: var(--color-red);
 }
 
 .slider::-moz-range-thumb{
     width: 25px;
     height: 25px;
-    background-color: var(--red-lighter);
-    border: 1px solid black;
+    background-color: var(--color-red-lighter);
     cursor: pointer;
     -webkit-transition: 200ms;
     transition: background-color 200ms;
 }
 .slider::-moz-range-thumb:hover, .slider:focus::-moz-range-thumb{
-    background-color: var(--red);
-}
-
-
-
-/* FOOTER */
-footer i{
-    border-right: 1px solid black;
+    background-color: var(--color-red);
 }
