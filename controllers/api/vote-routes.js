@@ -2,6 +2,7 @@
 // IMPORTS
 const router = require('express').Router();
 const {Vote} = require('../../models');
+const sequelize = require('../../config/connection');
 
 
 
@@ -10,14 +11,19 @@ const {Vote} = require('../../models');
 // Check if a given User voted for a given Fillin
 router.get('/check', async (req, res) => {
     try{
-        var dbVoteData = await Vote.findOne({
-            where: {
-                user_id: +req.session.user_id,
-                fillin_id: +req.query.fillinId
-            }
+        var dbVotesData = await Vote.findAll({
+            where: {fillin_id: +req.query.fillinId},
+            attributes: ['user_id']
         });
 
-        res.json({message: (dbVoteData ? true : false)});
+        dbVotesData = dbVotesData.map(vote => vote.get({plain: true}).user_id);
+
+        console.log(dbVotesData);
+
+        res.json({
+            message: dbVotesData.includes(req.session.user_id),
+            vote_count: dbVotesData.length
+        });
     }catch (err){
         console.log(err);
         res.status(500).json(err);
@@ -29,7 +35,7 @@ router.get('/check', async (req, res) => {
 router.post('/', async (req, res) => {
     try{
         const dbVoteData = await Vote.create({
-            user_id: +req.session.user_id,
+            user_id: req.session.user_id,
             fillin_id: req.body.fillinId
         });
 
