@@ -1,0 +1,40 @@
+
+<form class="template-maker">
+     <div class="instructions">
+        Enter a new&nbsp;&nbsp;<span>Mad Lib</span>&nbsp;&nbsp;here!
+        <br />
+        Fill-in fields go inside&nbsp;&nbsp;<span>[square brackets]</span>.
+        <br />
+    </div>
+
+    <div class="edit-preview-toggle">
+        <input type="radio" id="edit" name="edit-or-preview" value="edit" checked />
+        <label for="edit">Edit</label>
+        
+        <input type="radio" id="preview" name="edit-or-preview" value="preview" />
+        <label for="preview">Preview</label>
+    </div>
+
+    <div class="edit-window">
+        <input type="text" name="title" placeholder="Title" />
+
+        <textarea placeholder="The [adjective] brown fox [verb]s over the lazy [animal name]."></textarea>
+    </div>
+
+    <div class="preview-window" style="display: none;">
+        <header>
+            <h3 class="title"></h3>
+            <div class="subheader">
+                {{>redaction-slider redactionLvls=redactionLvls}}
+            </div>
+        </header>
+
+        <hr />
+
+        <div class="template-body"></div>
+    </div>
+
+    <button type="submit" class="template-maker-submit-btn">Submit</button>
+</form>
+
+<script src="/javascript/template/maker.js"></script>

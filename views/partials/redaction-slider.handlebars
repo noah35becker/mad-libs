@@ -1,6 +1,13 @@
 
 <div class="redaction-slider">
-    <input type="range" min="0" max="{{redactionLvls}}" class="slider" value="0" style="width: {{redaction_slider_width redactionLvls}}px"> <!--'value' here is just the initial value-->
+    <input
+        class="slider" type="range" min="0" max="{{redactionLvls}}"
+        value="0"
+        redaction-lvl = "{{redactionLvls}}"
+        style="width: {{redaction_slider_width redactionLvls}}px"
+    />
+
+    <label><i>Redaction</i></label>
 </div>
 
-<script src="/javascript/redaction-slider-blur.js"></script>
+<script src="/javascript/template/redaction-slider.js"></script>
