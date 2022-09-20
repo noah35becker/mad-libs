@@ -28,9 +28,6 @@ input:not(.slider){
     border-radius: 8px;
     padding-left: 7px;
 }
-.meta{
-    font-style: italic;
-}
 
 
 
@@ -118,22 +115,24 @@ main{
 
 /* TEMPLATE */
 .template{
-    text-align: center;
-    background-color: rgb(255, 212, 156);
     max-width: 600px;
     min-width: 300px;
+    text-align: center;
+    background-color: rgb(255, 212, 156);
     border: 1px solid rgb(91, 91, 91);
     border-radius: 8px;
 }
+.template header h3 span{
+    font-size: 18px;
+}
 .template .subheader{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    text-align: center;
 }
 .template-body{
     padding: 10px 20px;
     text-align: left;
     line-height: 1.8;
+    font-size: 18px;
 }
 .template-body span{
     font-family: monospace;
@@ -165,6 +164,25 @@ main{
     color: white;
     background-color: rgb(0, 150, 0);
     border: 1px solid black;
+}
+
+.fillin-meta{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.fillin-meta p{
+    color: blue;
+    text-align: center;
+    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), white, rgba(255, 0, 0, 0));
+    width: fit-content;
+    margin: 10px 0;
+    padding: 8px 40px;
+}
+
+.votes{
+    font-size: 20px;
+    padding-right: 15px;
 }
 
 
