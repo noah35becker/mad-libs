@@ -76,7 +76,11 @@ router.get('/:id', async (req, res) => {
             include: [
                 {
                     model: Template,
-                    attributes: ['id', 'title']
+                    attributes: ['id', 'title', 'content'],
+                    include: {
+                        model: User,
+                        attributes: ['username']
+                    }
                 },
                 {
                     model: User,
@@ -102,6 +106,7 @@ router.get('/:id', async (req, res) => {
 
         dbFillinData = dbFillinData.get({plain: true});
         dbFillinData.content = JSON.parse(dbFillinData.content);
+        dbFillinData.template.content = JSON.parse(dbFillinData.template.content);
 
         res.json(dbFillinData);
     }catch (err){
