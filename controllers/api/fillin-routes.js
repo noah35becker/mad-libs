@@ -17,7 +17,8 @@ router.get('/', async (req, res) => {
                 'id',
                 'content',
                 'created_at',
-                [sequelize.literal(`(SELECT COUNT(*) FROM vote WHERE fillin.id = vote.fillin_id)`), 'vote_count']
+                [sequelize.literal(`(SELECT COUNT(*) FROM vote WHERE fillin.id = vote.fillin_id)`), 'vote_count'],
+                [sequelize.literal(`(SELECT COUNT(*) FROM comment WHERE fillin.id = comment.fillin_id)`), 'comment_count']
             ],
             include: [
                 {
@@ -32,7 +33,7 @@ router.get('/', async (req, res) => {
         };
 
        if (req.query.templateId)
-            findParams.where = {template_id: +req.query.templateId};
+            findParams.where = {template_id: +req.query.templateId}; // REMOVE THIS, UNNECESSARY?
         
         findParams.order = [];
         switch (req.query.sortBy){
@@ -71,7 +72,8 @@ router.get('/:id', async (req, res) => {
                 'id',
                 'content',
                 'created_at',
-                [sequelize.literal(`(SELECT COUNT(*) FROM vote WHERE fillin.id = vote.fillin_id)`), 'vote_count']
+                [sequelize.literal(`(SELECT COUNT(*) FROM vote WHERE fillin.id = vote.fillin_id)`), 'vote_count'],
+                [sequelize.literal(`(SELECT COUNT(*) FROM comment WHERE fillin.id = comment.fillin_id)`), 'comment_count']
             ],
             include: [
                 {

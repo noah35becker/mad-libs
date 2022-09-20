@@ -184,6 +184,31 @@ main{
 
 
 
+/* FILLINS */
+.fillins-wrapper{
+    text-align: left;
+    width: 90%;
+}
+.fillin-meta-long{
+    font-size: 17px;
+    margin: 20px 0;
+    padding: 10px 15px;
+    background-color: var(--template-bkgd-color);
+    border: var(--template-border);
+    border-radius: 10px;
+}
+.fillin-meta-long .meta-content{
+    color: blue;
+    font-weight: bolder;
+    font-family: monospace;
+}
+.fillin-meta-long .meta-template{
+    font-weight: bolder;
+    font-family: monospace;
+    font-size: 18px ;
+}
+
+
 
 /* TEMPLATE VIEWER */
 .template{
@@ -245,14 +270,14 @@ main{
     background-color: var(--blue-medium);
 }
 
-.fillin-meta{
+.fillin-meta-short{
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
     text-align: center;
 }
-.fillin-meta p{
+.fillin-meta-short p{
     color: blue;
     background-image: linear-gradient(to right, rgba(255, 0, 0, 0), white, rgba(255, 0, 0, 0));
     width: fit-content;

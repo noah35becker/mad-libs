@@ -13,6 +13,7 @@ $('.edit-preview-toggle').on('change', 'input', async function(){
     if ($(this).val() === 'edit'){
         $('.edit-window').css('display', 'block');
         $('.preview-window').css('display', 'none');
+        $('.submit-error-msg').css('display', 'block');
     } else {
         $('.slider')
             .val(0)
@@ -48,6 +49,7 @@ async function updatePreview(){
 
     previewBody.empty();
     previewTitle.text('');
+    $('.submit-error-msg').css('display', 'none');
 
     if (response.ok){
         if (!redactionOrder)

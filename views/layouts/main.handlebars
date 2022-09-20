@@ -54,8 +54,8 @@
                 
                 {{#if loggedIn}}
                     <a href="/dashboard" class="w3-button w3-mobile">Dashboard</a>
-
-                    <button href="/logout" class="w3-button w3-mobile">Logout</button>
+                    <button class="logout-nav w3-button w3-mobile">Logout</button>
+                    <script src="/javascript/user/logout.js"></script>
                 {{else}}
                     <button class="nav-login w3-button w3-mobile">Login</button>
                 {{/if}}
@@ -73,15 +73,19 @@
 
                     <form class="login-form w3-container">
                         <div class="w3-section">
-                            <label><b>Username</b></label>
-                            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter username" required />
+                            <label><b>Email</b></label>
+                            <input name="email" class="w3-input w3-border w3-margin-bottom" type="email" placeholder="Enter email" required />
                             
                             <label><b>Password</b></label>
-                            <input class="w3-input w3-border" type="password" placeholder="Enter Password" required />
+                            <input name="password" class="w3-input w3-border" type="password" placeholder="Enter Password" required />
                             
                             <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Login</button>
+
+                            <p class="error-msg"></p>
                         </div>
                     </form>
+
+                    <script src="/javascript/user/login.js"></script>
                 </div>
             </div>
         {{/unless}}
@@ -107,8 +111,5 @@
         </footer>
 
         <script src="/javascript/footer.js"></script>
-        {{#unless loggedIn}}
-            <script src="/javascript/login.js"></script>
-        {{/unless}}
     </body>
 </html>

@@ -19,5 +19,19 @@ module.exports = {
 
     store_fillin_content: fillinContent => JSON.stringify(fillinContent),
 
+    fillin_info_content_abbrev: fillinContent => {
+        const length = 35;
+        
+        var output = fillinContent
+            .map(word => `"${word}"`)
+            .join(', ')
+            .substring(0, length);
+        
+        if (output.length === length)
+            output += '...';
+        
+        return output;
+    },
+
     compare: (a, b) => a === b
 };

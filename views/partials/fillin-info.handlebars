@@ -1,0 +1,12 @@
+
+{{#with fillin}}
+    <div class="fillin-meta-long">
+        <span class="meta-content">{{fillin_info_content_abbrev content}}</span>
+        &nbsp;|&nbsp;
+        Template: <span class="meta-template">{{template.title}}</span>
+        &nbsp;|&nbsp;
+        <span class="meta-comment-count">{{comment_count}}&nbsp;{{format_plural 'comment' comment_count}}</span>
+        &nbsp;|&nbsp;
+        <span class="meta-votes"><i class="fa-solid fa-thumbs-up"></i>&nbsp;&nbsp;{{vote_count}}</span>
+    </div>
+{{/with}}

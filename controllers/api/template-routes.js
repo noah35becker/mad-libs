@@ -125,8 +125,7 @@ router.post('/preview', async (req, res) => {
         var templateInstance = Template.build({
             title: req.body.title,
             content: req.body.content,
-            user_id: 1 // TESTER
-            // user_id: req.session.user_id
+            user_id: req.session.user_id
         });
         
         // Mimic the beforeCreate hook
@@ -165,8 +164,7 @@ router.post('/', async (req, res) => {
         var dbTemplateData = await Template.create({
             title: req.body.title,
             content: req.body.content,
-            // user_id: req.session.user_id
-            user_id: 1 // TESTER
+            user_id: req.session.user_id
         });
      
         dbTemplateData = dbTemplateData.get({plain: true});
