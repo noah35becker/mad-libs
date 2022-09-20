@@ -2,24 +2,27 @@
     <form
         class="template"
         {{#if ../fillin}}
-            fillin-id="{{../fillin.id}}"
+            fillin-content="{{store_fillin_content ../fillin.content}}"
         {{/if}}
     >
         <header>
             <h3>{{title}}</h3>
             <div class="subheader">
                 <h5>By <i>{{user.username}}</i></h5>
-                {{>redaction-slider redactionLvls=redaction_order.length}}
+                {{#unless ../fillin}}
+                    {{>redaction-slider redactionLvls=redaction_order.length}}
+                {{/unless}}
             </div>
         </header>
 
         <hr />
 
-        <div class="template-body">
+
+        <div class="template-body">        
             {{#each content as |elem|}}
                 {{#if elem.isStatic}}
                     {{#if (is_space_char elem.word)}}
-                        &puncsp;
+                         &emsp13;
                     {{else if (compare elem.staticIndex null)}}
                         <b>{{elem.word}}</b>
                     {{else}}
@@ -28,9 +31,17 @@
                 {{else if elem.isRedacted}}
                     <span class="redacted">{{redaction_string elem.redactedString}}</span>
                 {{else}}
-                    <span class="mutable" mutable-index="{{elem.mutableIndex}}"><input type="text" placeholder="{{elem.label}}" /></span>
+                    <span class="mutable" mutable-index="{{elem.mutableIndex}}">{{#unless ../../fillin}}<input type="text" placeholder="{{elem.label}}" />{{/unless}}</span>
                 {{/if}}
             {{/each}}
         </div>
+
+        {{#unless ../fillin}}
+            <button type="submit" class="fillin-submit-btn">Submit</button>
+        {{/unless}}
     </form>
 {{/with}}
+
+{{#if fillin}}
+    <script src="/javascript/populate-fillin-content.js"></script>
+{{/if}}

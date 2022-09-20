@@ -17,5 +17,7 @@ module.exports = {
 
     invert_redaction_val: (thisLvl, totalLvls) => totalLvls - thisLvl,
 
+    store_fillin_content: fillinContent => JSON.stringify(fillinContent),
+
     compare: (a, b) => a === b
 };

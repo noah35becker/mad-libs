@@ -143,6 +143,8 @@ main{
     color: blue;
 }
 .template-body span.mutable input{
+    font-family: 'Raleway', sans-serif;
+    color: blue;
     height: 30px;
     margin-bottom: 9px;
     width: 160px;
@@ -155,6 +157,14 @@ main{
     background-color: black;
     border-radius: 5px;
     cursor: help;
+}
+
+.fillin-submit-btn{
+    margin: 10px 0 15px;
+    padding: 5px 13px;
+    color: white;
+    background-color: rgb(0, 150, 0);
+    border: 1px solid black;
 }
 
 
