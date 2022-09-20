@@ -27,7 +27,7 @@ $('.login-form').submit(async event => {
     });
 
     if (response.ok)
-        location.replace('/');
+        location.replace('/dashboard');
     else if (response.status === 404 || response.status === 400){
         const responseJson = await response.json();
         $('.login-form .error-msg').text(responseJson.message);

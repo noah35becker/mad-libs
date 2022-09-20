@@ -52,6 +52,8 @@ async function updatePreview(){
     $('.submit-error-msg').css('display', 'none');
 
     if (response.ok){
+        $('.submit-error-msg').text('');
+
         if (!redactionOrder)
             redactionOrder = preview.redaction_order;
 
@@ -70,8 +72,10 @@ async function updatePreview(){
             else
                 previewBody.append(`<span class="mutable" mutable-index="${elem.mutableIndex}"><input type="text" placeholder="${elem.label}" /></span>`);
         }
-    } else
+    } else {
         previewBody.append(`<p class="error-msg">${preview.message}</p>`);
+        $('.submit-error-msg').text(preview.message);
+    }
     
 }
 
@@ -95,7 +99,7 @@ $('.template-maker').submit(async function(event){
     });
 
     if (response.ok){
-        $('.submit-error-msg').text('');
+        $('.submit-error-msg').text(''); // DELETE LATER
         alert('submitted!'); // UPDATE LATER with a redirect to the new template page
     }
     else{

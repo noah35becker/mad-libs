@@ -1,12 +1,29 @@
 
 {{#with fillin}}
-    <div class="fillin-meta-long">
+    <div class="fillin-meta-long" fillin-id="{{id}}">
         <span class="meta-content">{{fillin_info_content_abbrev content}}</span>
+        {{#if ../showUsernames}}
+            &nbsp;by&nbsp; <span class="meta-username">{{user.username}}</span>
+        {{/if}}
+        
         &nbsp;|&nbsp;
-        Template: <span class="meta-template">{{template.title}}</span>
+        
+        Template:&nbsp;&nbsp;<span class="meta-template-title">{{template.title}}</span>
+        
         &nbsp;|&nbsp;
+        
         <span class="meta-comment-count">{{comment_count}}&nbsp;{{format_plural 'comment' comment_count}}</span>
+        
         &nbsp;|&nbsp;
+        
         <span class="meta-votes"><i class="fa-solid fa-thumbs-up"></i>&nbsp;&nbsp;{{vote_count}}</span>
+        
+        <p class="meta-created-at">
+            Created&nbsp;on&nbsp;&nbsp;<span class="time">{{format_date created_at}}</span></span>
+            {{#if ../showDeleteBtns}}
+                &nbsp;&nbsp;<a class="delete-btn"><i class="fa-regular fa-trash-can"></i></a>
+                <script src="/javascript/fillin/delete.js"></script>
+            {{/if}}
+        </p>
     </div>
 {{/with}}

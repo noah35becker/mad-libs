@@ -1,0 +1,28 @@
+
+<h3>Welcome, <span class="username">{{user.username}}</span></h3>
+
+<div class="update-user-info-wrapper">
+    <button id="update-password-dashboard-btn" type="button" class="dashboard-btn">Update password</button>
+    <button id="update-username-dashboard-btn" type="button" class="dashboard-btn">Update username</button>
+    <button id="update-email-dashboard-btn" type="button" class="dashboard-btn">Update email</button>
+    <button id="delete-account-dashboard-btn" type="button" class="dashboard-btn">Delete account</button>
+    <script src="/javascript/user/dashboard-btns.js"></script>
+</div>
+
+{{#with user}}
+    <div class="templates-wrapper">
+        <h3>Your templates:</h3>
+
+        {{#each templates as |template|}}
+            {{>template-info template=template showDeleteBtns=true}}
+        {{/each}}
+    </div>
+
+    <div class="fillins-wrapper">
+        <h3>Your fill-ins:</h3>
+
+        {{#each fillins as |fillin|}}
+            {{>fillin-info fillin=fillin showDeleteBtns=true showUsernames=false}}
+        {{/each}}
+    </div>
+{{/with}}

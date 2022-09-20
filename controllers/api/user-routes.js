@@ -8,7 +8,7 @@ const {isLoggedInApiAuth, isLoggedOutApiAuth} = require('../../utils/auth');
 
 // ROUTES
 
-// Get all users
+// Get all
 router.get('/', async (req, res) => {
     try{
         var dbUsersData = await User.findAll({
@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
 });
 
 
-// Get one user
+// Get one
 router.get('/:id', async (req, res) => {
     try{
         var dbUserData = await User.findByPk(req.params.id, {
@@ -289,7 +289,7 @@ router.put('/update-email', isLoggedInApiAuth, async (req, res) => { // expects 
 
         let errJson = JSON.parse(JSON.stringify(err));
         if (errJson.name === 'SequelizeUniqueConstraintError'){
-            errJson.message = 'This username is already taken';
+            errJson.message = 'This email is already taken';
             res.status(409).send(errJson);
         } else
             res.status(500).send(errJson);  
