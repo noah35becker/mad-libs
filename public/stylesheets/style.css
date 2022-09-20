@@ -6,6 +6,8 @@
     --blue: rgb(0, 84, 149); 
     --blue-medium: rgb(0, 166, 255);
     --blue-lighter: rgb(98, 146, 153);
+    --template-bkgd-color: rgb(255, 212, 156);
+    --template-border: 1px solid rgb(91, 91, 91);
 }
 
 
@@ -24,10 +26,16 @@ body, h1, h2, h3, h4, h5, h6, p, a{
 hr{
     margin: 15px 0;
 }
-input:not(.slider){
+input:not(.slider), textarea{
     border: 1px solid black;
     border-radius: 8px;
     padding-left: 7px;
+}
+main{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -112,23 +120,45 @@ input:not(.slider){
 
 
 
-/* MAIN */
-main{
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* TEMPLATE MAKER */
+.template-maker{
+    text-align: center;
+    max-width: 800px;
+    min-width: 300px;
+    margin: 0px 30px;
+    text-align: center;
+    background-color: var(--template-bkgd-color);
+    border: var(--template-border);
+    border-radius: 8px;
+    padding-top: 20px;
+}
+.template-maker textarea{
+    margin: 20px 0;
+    width: 90%;
+    min-height: 300px;
+    resize: none;
+    color: blue;
+    font-family: monospace;
+    padding-top: 5px;
+}
+.template-maker .instructions{
+    line-height: 1.8;
+    width: fit-content;
+    padding: 0 25px;
+}
+.template-maker .instructions span{
+    font-family: monospace;
 }
 
 
 
-/* TEMPLATE */
+/* TEMPLATE VIEWER */
 .template{
     max-width: 600px;
     min-width: 300px;
     text-align: center;
-    background-color: rgb(255, 212, 156);
-    border: 1px solid rgb(91, 91, 91);
+    background-color: var(--template-bkgd-color);
+    border: var(--template-border);
     border-radius: 8px;
 }
 .template header h3 span{
@@ -167,7 +197,8 @@ main{
     cursor: help;
 }
 
-.fillin-submit-btn{
+
+.fillin-submit-btn, .template-maker-submit-btn{
     margin: 10px 0 15px;
     padding: 5px 13px;
     color: white;
@@ -176,7 +207,7 @@ main{
     border-radius: 10px;
     transition: .2s;
 }
-.fillin-submit-btn:hover{
+.fillin-submit-btn:hover, .template-maker-submit-btn:hover{
     border-color: white;
     background-color: var(--blue-medium);
 }
