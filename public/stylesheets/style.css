@@ -4,6 +4,7 @@
     --red: rgb(202, 0, 0);
     --red-lighter: rgb(170, 83, 87);
     --blue: rgb(0, 84, 149); 
+    --blue-medium: rgb(0, 166, 255);
     --blue-lighter: rgb(98, 146, 153);
 }
 
@@ -98,7 +99,7 @@ input:not(.slider){
 }
 
 .login-form div button[type="submit"]:hover{
-    background-color: rgb(0, 166, 255) !important;
+    background-color: var(--blue-medium) !important;
 }
 
 
@@ -164,25 +165,38 @@ main{
     color: white;
     background-color: rgb(0, 150, 0);
     border: 1px solid black;
+    border-radius: 10px;
+    transition: .2s;
+}
+.fillin-submit-btn:hover{
+    border-color: white;
+    background-color: var(--blue-medium);
 }
 
 .fillin-meta{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
 }
 .fillin-meta p{
     color: blue;
-    text-align: center;
     background-image: linear-gradient(to right, rgba(255, 0, 0, 0), white, rgba(255, 0, 0, 0));
     width: fit-content;
-    margin: 10px 0;
-    padding: 8px 40px;
+    margin: 15px 0;
+    padding: 8px 25px;
 }
 
 .votes{
     font-size: 20px;
-    padding-right: 15px;
+    margin: 0 20px;
+}
+.votes a{
+    cursor: pointer;
+}
+.votes[current-user-voted] a{
+    color: green;
 }
 
 
@@ -192,6 +206,7 @@ main{
 .redaction-slider{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .redaction-slider label{
     color: var(--blue);

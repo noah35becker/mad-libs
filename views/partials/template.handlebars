@@ -23,7 +23,7 @@
                 {{#each content as |elem|}}
                     {{#if elem.isStatic}}
                         {{#if (is_space_char elem.word)}}
-                            &emsp13;
+                            &nbsp;
                         {{else if (compare elem.staticIndex null)}}
                             <b>{{elem.word}}</b>
                         {{else}}
@@ -37,22 +37,24 @@
                 {{/each}}
             </div>
 
-            {{#if ../fillin}}
-                <script src="/javascript/populate-fillin-content.js"></script>
-            {{else}}
+            {{#unless ../fillin}}
                 <button type="submit" class="fillin-submit-btn">Submit</button>
-            {{/if}}
+            {{/unless}}
         </form>
     {{/with}}
 
-    <div class="fillin-meta">
-        <p>By <i>{{fillin.user.username}}</i> on <i>{{format_date fillin.created_at}}</i></p>
+    {{#if fillin}}
+        <div class="fillin-meta">
+            <p>By <i>{{fillin.user.username}}</i> on <i>{{format_date fillin.created_at}}</i></p>
 
-        <div class="votes">
-            <a><i class="fa-solid fa-thumbs-up"></i></a>
-            &nbsp;
-            <span class="vote-count">{{fillin.vote_count}}</span>
+            <div class="votes">
+                <a><i class="fa-solid fa-thumbs-up"></i></a>
+                &nbsp;
+                <span class="vote-count">{{fillin.vote_count}}</span>
+            </div>
         </div>
-    </div>
 
+        <script src="/javascript/populate-fillin-content.js"></script>
+        <script src="/javascript/vote.js"></script>
+    {{/if}}
 </div>
