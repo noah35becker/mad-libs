@@ -54,6 +54,17 @@ Comment.belongsTo(Fillin, {
 });
 
 
+Comment.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
+
+User.hasMany(Comment, {
+    foreignKey: 'user_id',
+    as: 'comments'
+});
+
+
 Fillin.belongsToMany(User, {
     through: Vote,
     as: 'voted_fillins',

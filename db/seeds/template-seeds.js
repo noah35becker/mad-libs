@@ -24,9 +24,11 @@ const templatesData = [
     }
 ];
 
-const seedTemplates = () => Template.bulkCreate(
-    templatesData,
-    {individualHooks: true}
-);
+const seedTemplates = async () => {
+    for (const template of templatesData){
+        await Template.create(template);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+};
 
 module.exports = seedTemplates;

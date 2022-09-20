@@ -2,7 +2,6 @@
 // IMPORTS
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
-const {Template} = require('./');
 
 
 
@@ -28,16 +27,8 @@ Fillin.init(
             }
         },
         content: {
-            type: DataTypes.TEXT, // this will be an array of strings, and only converted to JSON upon beforeCreate or beforeUpdate (see hooks below)
-            allowNull: false,
-            validate: {
-                async numInputsMatchesTemplate(value){
-                    var template = await Template.findByPk(this.template_id, {attributes: ['mutableCount']});
-                    if (template.mutableCount === value.length)
-                        return null;
-                    throw new Error('Number of inputs does not match the template\'s number of mutables');
-                }
-            }
+            type: DataTypes.JSON, // this will be an array of strings, and only converted to JSON upon beforeCreate or beforeUpdate (see hooks below)
+            allowNull: false
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -57,14 +48,6 @@ Fillin.init(
             beforeCreate: newFillinData => {
                 newFillinData.content = JSON.stringify(newFillinData.content);
                 return newFillinData;
-            },
-            beforeUpdate: updatedFillinData => {
-                updatedFillinData.content = JSON.stringify(updatedFillinData.content);
-                return updatedFillinData;
-            },
-            beforeFind: queriedFillinData => {
-                queriedFillinData.content = JSON.parse(queriedFillinData.content);
-                return queriedFillinData;
             }
         }
     }
