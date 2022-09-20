@@ -117,10 +117,16 @@ router.get('/:id', async (req, res) => {
 // Preview one
 router.post('/preview', async (req, res) => {
     try {
+        if (!req.body.title){
+            res.status(400).json({message: "Title is missing"})
+            return;
+        }
+
         var templateInstance = Template.build({
             title: req.body.title,
             content: req.body.content,
-            user_id: req.session.user_id
+            user_id: 1 // TESTER
+            // user_id: req.session.user_id
         });
         
         // Mimic the beforeCreate hook
@@ -151,10 +157,16 @@ router.post('/preview', async (req, res) => {
 // Create new
 router.post('/', async (req, res) => {
     try {
+        if (!req.body.title){
+            res.status(400).json({message: "Title is missing"})
+            return;
+        }
+
         var dbTemplateData = await Template.create({
             title: req.body.title,
             content: req.body.content,
-            user_id: req.session.user_id
+            // user_id: req.session.user_id
+            user_id: 1 // TESTER
         });
      
         dbTemplateData = dbTemplateData.get({plain: true});
@@ -165,7 +177,7 @@ router.post('/', async (req, res) => {
             message: 'Template successfully created',
             template: dbTemplateData
         });
-    }catch (err){
+    } catch (err){
         console.log(err);
         res.status(400).json({message: err.message});
     }

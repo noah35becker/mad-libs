@@ -37,9 +37,11 @@ class Template extends Model{
 
         let squareBrackets = input.match(/[\[\]]/ig);
         if (!squareBrackets || squareBrackets.length < 2)
-                throw new Error('There must be at least one mutable');    
+                throw new Error('There must be at least one fill-in field');    
         squareBrackets.forEach((element, index) => {
             if (
+                    squareBrackets.length % 2 !== 0
+                ||
                     (!(index % 2) && element !== '[') // even-indexed
                 ||
                     (index % 2 && element !== ']') // odd-indexed
