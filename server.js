@@ -22,7 +22,7 @@ const routes = require('./controllers');
 
 const PORT = process.env.PORT || 3001;
 
-const {sessionTimeout} = require('./utils/general-helpers');
+const {SESSION_TIMEOUT} = require('./utils/general-helpers');
 
 
 
@@ -36,7 +36,7 @@ app.use(express.json());
 
 const sess = {
     secret: process.env.SESSION_SECRET,
-    cookie: {maxAge: sessionTimeout}, // Login session expires after sessionTimeout ms...
+    cookie: {maxAge: SESSION_TIMEOUT}, // Login session expires after sessionTimeout ms...
     rolling: true, // ...for which the timer resets each time a page load/reload occurs
     resave: false,
     saveUninitialized: true,

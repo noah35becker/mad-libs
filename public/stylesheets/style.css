@@ -25,6 +25,7 @@ body, h1, h2, h3, h4, h5, h6, p, a{
 }
 hr{
     margin: 15px 0;
+    border-top-color: lightgray;
 }
 input:not(.slider), textarea{
     border: 1px solid black;
@@ -124,7 +125,7 @@ main{
 .template-maker{
     text-align: center;
     max-width: 800px;
-    min-width: 300px;
+    min-width: 425px;
     margin: 0px 30px;
     text-align: center;
     background-color: var(--template-bkgd-color);
@@ -132,8 +133,36 @@ main{
     border-radius: 8px;
     padding-top: 20px;
 }
+
+.template-maker .instructions{
+    line-height: 1.8;
+    width: fit-content;
+    padding: 0 25px;
+    margin: 0 auto;
+}
+.template-maker .instructions span{
+    font-family: monospace;
+    font-size: 16px;
+}
+
+.edit-preview-toggle{
+    display: flex;
+    justify-content: center;
+    margin-top: 13px;
+}
+.edit-preview-toggle #preview{
+    margin-left: 15px;
+}
+.edit-preview-toggle label{
+    margin-left: 5px;
+}
+
+.template-maker input[name="title"]{
+    margin-top: 8px;
+}
+
 .template-maker textarea{
-    margin: 20px 0;
+    margin: 10px 0;
     width: 90%;
     min-height: 300px;
     resize: none;
@@ -141,21 +170,16 @@ main{
     font-family: monospace;
     padding-top: 5px;
 }
-.template-maker .instructions{
-    line-height: 1.8;
-    width: fit-content;
-    padding: 0 25px;
+
+.preview-window{
+    padding: 0 20px;
 }
-.template-maker .instructions span{
-    font-family: monospace;
-}
+
 
 
 
 /* TEMPLATE VIEWER */
 .template{
-    max-width: 600px;
-    min-width: 300px;
     text-align: center;
     background-color: var(--template-bkgd-color);
     border: var(--template-border);
@@ -168,6 +192,8 @@ main{
     text-align: center;
 }
 .template-body{
+    max-width: 600px;
+    min-width: 300px;
     padding: 10px 20px;
     text-align: left;
     line-height: 1.8;
