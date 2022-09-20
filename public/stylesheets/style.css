@@ -241,7 +241,7 @@ select{
 
 .template-maker input[name="title"]{
     margin-top: 8px;
-    color: blue
+    color: blue;
 }
 
 .template-maker input[name="title"]{

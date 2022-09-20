@@ -2,6 +2,7 @@
 // IMPORTS
 const router = require('express').Router();
 const {Vote} = require('../../models');
+const sequelize = require('../../config/connection');
 
 
 
