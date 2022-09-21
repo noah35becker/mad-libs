@@ -17,7 +17,7 @@ $('.login-form').submit(async event => {
     const email = $('.login-form input[name="email"]').val().trim();
     const password = $('.login-form input[name="password"]').val();
 
-    const response = await fetch('api/user/login',{
+    const response = await fetch('/api/user/login',{
         method: 'post',
         body: JSON.stringify({
             email,

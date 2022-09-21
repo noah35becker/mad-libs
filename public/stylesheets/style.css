@@ -8,6 +8,7 @@
     --blue-lighter: rgb(98, 146, 153);
     --template-bkgd-color: rgb(255, 212, 156);
     --template-border: 1px solid rgb(91, 91, 91);
+    --green: rgb(0, 150, 0);
 }
 
 
@@ -151,6 +152,17 @@ input[type="password"]::placeholder{
     padding: 5px 15px;
     font-size: 17px;
     margin: 15px 30px;
+    border-radius: 10px;
+    border: 1px solid black;
+    transition: .2s;
+}
+.view-random-template{
+    background-color: var(--green);
+    color: white;
+}
+.view-random-template:hover{
+    background-color: white;
+    color: var(--green);
 }
 
 
@@ -222,6 +234,12 @@ input[type="password"]::placeholder{
     color: var(--red);
     cursor: pointer;
 }
+.meta-item a{
+    transition: .2s;
+}
+.meta-item a:hover{
+    opacity: .5;
+}
 .meta-created-at{
     font-size: 16px;
     font-style: italic;
@@ -247,20 +265,15 @@ input[type="password"]::placeholder{
     border-radius: 10px;
 }
 .meta-username,
-.meta-template-title,
-.fillin-meta-long .meta-content
-{
-    font-weight: bolder;
+.meta-template-title, .meta-template-title a,
+.fillin-meta-long .meta-content{   
     font-family: monospace;
 }
 .meta-template-title{
+    color: green;
     font-size: 18px;
 }
-.template-meta .meta-template-title{
-    color: green;
-}
-.fillin-meta-long .meta-content
-{
+.fillin-meta-long .meta-content{
     color: blue;
 }
 
@@ -338,7 +351,8 @@ h3 .username{
     cursor: pointer;
 }
 .btn-green{
-    background-color: rgb(33, 158, 33);
+    background-color: green;
+    color: white;
     border: 1px solid black;
 }
 .btn-green:hover{
@@ -410,7 +424,7 @@ h3 .username{
     margin: 10px 0 15px;
     padding: 5px 13px;
     color: white;
-    background-color: rgb(0, 150, 0);
+    background-color: green;
     border: 1px solid black;
     border-radius: 10px;
     transition: .2s;
@@ -418,6 +432,13 @@ h3 .username{
 .fillin-submit-btn:hover, .template-maker-submit-btn:hover{
     border-color: white;
     background-color: var(--blue-medium);
+}
+
+.fillin-submit-instructions{
+    font-weight: 400;
+}
+.fillin-submit-instructions button{
+    font-weight: 300;
 }
 
 .fillin-meta-short{
@@ -502,7 +523,7 @@ h3 .username{
 
 /* FOOTER */
 footer{
-    font-weight: 500;
+    font-weight: 400;
 }
 footer i{
     border-right: 1px solid black;

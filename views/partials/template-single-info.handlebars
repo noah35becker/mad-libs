@@ -1,11 +1,11 @@
 
 {{#with template}}
     <div class="template-meta" template-id="{{id}}">
-        <span class="meta-template-title">{{title}}</span>
+        <span class="meta-item meta-template-title">{{title}}</span>
         &nbsp;|&nbsp;
-        <span class="meta-fillin-count">{{fillin_count}}&nbsp;{{format_plural 'fill-in' fillin_count}}</span>
+        <span class="meta-item meta-fillin-count">{{fillin_count}}&nbsp;{{format_plural 'fill-in' fillin_count}}</span>
         &nbsp;|&nbsp;
-        <span class="meta-created-at">Created&nbsp;on&nbsp;&nbsp;<span class="time">{{format_date created_at}}</span></span>
+        <span class="meta-item meta-created-at">Created&nbsp;on&nbsp;&nbsp;<span class="time">{{format_date created_at}}</span></span>
         {{#if ../showDeleteBtns}}
             &nbsp;&nbsp;<a class="delete-btn"><i class="fa-regular fa-trash-can"></i></a>
             <script src="/javascript/template/delete.js"></script>

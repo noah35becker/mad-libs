@@ -1,7 +1,7 @@
 
 // Logout
 $('.logout-nav').click(async () => {
-    const response = await fetch(location.pathname.split('/')[0] + '/api/user/logout',{
+    const response = await fetch('/api/user/logout',{
         method: 'post'
     });
 

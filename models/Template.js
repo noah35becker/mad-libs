@@ -115,6 +115,9 @@ class Template extends Model{
     redactContent(redactionLvl){
         var redactedContent = JSON.parse(this.content);
         let redaction_order = JSON.parse(this.redaction_order);
+
+        if (!redactionLvl)
+            redactionLvl = redaction_order.length;
     
         for (let i = 0; i < redactionLvl; i++){
             for (let r = redaction_order[i]; r < this.static_count; r += redaction_order.length){

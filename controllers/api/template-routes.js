@@ -48,6 +48,25 @@ router.get('/', async (req, res) => {
 });
 
 
+// Get ID of one random template
+router.get('/random-id', async (req, res) => {
+    try{
+        var oneRand = await Template.findAll({
+            order: sequelize.random(),
+            limit: 1,
+            attributes: ['id']
+        });
+
+        oneRand = oneRand[0].get({plain: true});
+
+        res.json({rand_id: oneRand.id});
+    }catch (err){
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+
 // Get one
 router.get('/:id', async (req, res) => {
     try {
@@ -64,7 +83,8 @@ router.get('/:id', async (req, res) => {
                         'id',
                         'created_at',
                         'content',
-                        [sequelize.literal(`(SELECT COUNT(*) FROM vote WHERE vote.fillin_id = fillins.id)`), 'vote_count']
+                        [sequelize.literal(`(SELECT COUNT(*) FROM vote WHERE vote.fillin_id = fillins.id)`), 'vote_count'],
+                        [sequelize.literal(`(SELECT COUNT(*) FROM comment WHERE fillins.id = comment.fillin_id)`), 'comment_count']
                     ],
                     as: 'fillins',
                     include: {
@@ -116,26 +136,39 @@ router.get('/:id', async (req, res) => {
 // Preview one
 router.post('/preview', async (req, res) => {
     try {
-        if (!req.body.title){
-            res.status(400).json({message: "Title is missing"})
-            return;
-        }
+        var templateInstance;
 
-        var templateInstance = Template.build({
-            title: req.body.title,
-            content: req.body.content,
-            user_id: req.session.user_id
-        });
-        
-        // Mimic the beforeCreate hook
-        processedData = Template.fromString(templateInstance.content);
-            templateInstance.content = JSON.stringify(processedData.contentArr);
-            templateInstance.static_count = processedData.static_count;
-            templateInstance.mutable_count = processedData.mutable_count;
-        templateInstance.redaction_order = JSON.stringify(
-            req.body.redaction_order ||
-            Template.getRedactionOrder()
-        );
+        if (req.query.templateId){
+            templateInstance = await Template.findByPk(+req.query.templateId, {
+                attributes: ['title', 'content', 'redaction_order', 'static_count', 'mutable_count'],
+                include: [{
+                    model: User,
+                    attributes: ['id']
+                }]
+            });
+        } else {
+            if (!req.body.title){
+                res.status(400).json({message: "Title is missing"})
+                return;
+            }
+
+            templateInstance = Template.build({
+                title: req.body.title,
+                content: req.body.content,
+                user_id: req.session.user_id
+            });
+            
+            // Mimic the beforeCreate hook
+            let processedData = Template.fromString(templateInstance.content);
+                templateInstance.content = JSON.stringify(processedData.contentArr);
+                templateInstance.static_count = processedData.static_count;
+                templateInstance.mutable_count = processedData.mutable_count;
+            templateInstance.redaction_order = JSON.stringify(
+                    req.body.redaction_order
+                ||
+                    Template.getRedactionOrder()
+            );
+        }
 
         if (+req.query.redactionLvl)
             templateInstance = templateInstance.redactContent(+req.query.redactionLvl);

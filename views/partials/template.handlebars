@@ -6,9 +6,10 @@
             {{#if ../fillin}}
                 fillin-content="{{store_fillin_content ../fillin.content}}"
             {{/if}}
+            template-id="{{id}}"
         >
             <header>
-                <h3>{{title}} <span>(by <i>{{user.username}})</i></span></h3>
+                <h3 class="template-title template-title-static">{{title}} <span>(by <i>{{user.username}})</i></span></h3>
                 <div class="subheader">
                     {{#unless ../fillin}}
                         {{>redaction-slider redactionLvls=redaction_order.length}}
@@ -19,26 +20,13 @@
             <hr />
 
 
-            <div class="template-body">        
-                {{#each content as |elem|}}
-                    {{#if elem.isStatic}}
-                        {{#if (is_space_char elem.word)}}
-                            &nbsp;
-                        {{else if (compare elem.staticIndex null)}}
-                            <span>{{elem.word}}</span>
-                        {{else}}
-                            <span class="static">{{elem.word}}</span>
-                        {{/if}}
-                    {{else if elem.isRedacted}}
-                        <span class="redacted">{{redaction_string elem.redactedString}}</span>
-                    {{else}}
-                        <span class="mutable" mutable-index="{{elem.mutableIndex}}">{{#unless ../../fillin}}<input type="text" placeholder="{{elem.label}}" />{{/unless}}</span>
-                    {{/if}}
-                {{/each}}
-            </div>
+            <div class="template-body"></div> {{!-- Populated via the '/javascript/template/redaction.js' script --}}
 
             {{#unless ../fillin}}
-                <button type="submit" class="fillin-submit-btn">Submit</button>
+                {{#if ../loggedIn}}
+                    <span class="fillin-submit-instructions">Fill in, then&nbsp;&nbsp;<button type="submit" class="fillin-submit-btn">submit</button></span>
+                    <p class="fillin-submit-error-msg error-msg"></p>
+                {{/if}}
             {{/unless}}
         </form>
     {{/with}}
@@ -58,3 +46,5 @@
         <script src="/javascript/fillin/vote.js"></script>
     {{/if}}
 </div>
+
+<script src="/javascript/template/redaction.js"></script>
