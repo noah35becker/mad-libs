@@ -1,7 +1,7 @@
 
 // Logout
 $('.logout-nav').click(async () => {
-    const response = await fetch('api/user/logout',{
+    const response = await fetch(location.href.split(RegExp('(?<!\/)\/(?!\/)'))[0] + '/api/user/logout',{
         method: 'post'
     });
 
