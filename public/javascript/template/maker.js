@@ -36,14 +36,12 @@ $('.template-maker').submit(async function(event){
             body: JSON.stringify({title, content}),
             headers: {'Content-Type': 'application/json'}
         });
+        const responseJson = await response.json();
 
-        if (response.ok){
-            $('.submit-error-msg').text(''); // DELETE LATER
-            alert('submitted!'); // UPDATE LATER with a redirect to the new template page
-        }
-        else{
-            const responseJson = await response.json();
+        if (response.ok)
+            location.assign('/template/' + responseJson.template.id);
+        else    
             $('.submit-error-msg').text(responseJson.message === 'Validation error' ? 'This title is already taken' : responseJson.message);
-        }
+        
     }
 });
