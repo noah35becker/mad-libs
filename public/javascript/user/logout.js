@@ -6,7 +6,7 @@ $('.logout-nav').click(async () => {
     });
 
     if (response.ok)
-        location.replace('/');
+        location.assign('/');
     else
         alert(response.statusText);
 });

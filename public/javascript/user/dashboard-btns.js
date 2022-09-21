@@ -2,19 +2,19 @@
 // FUNCTIONS
 
 function updatePasswordBtnHandler(){
-    location.replace('/dashboard/update-user-info/password');
+    location.assign('/dashboard/update-user-info/password');
 };
 
 function updateUsernameBtnHandler(){
-    location.replace('/dashboard/update-user-info/username');
+    location.assign('/dashboard/update-user-info/username');
 };
 
 function updateEmailBtnHandler(){
-    location.replace('/dashboard/update-user-info/email');
+    location.assign('/dashboard/update-user-info/email');
 };
 
 function deleteAccountBtnHandler(){
-    location.replace('/dashboard/update-user-info/delete-account')
+    location.assign('/dashboard/update-user-info/delete-account')
 }
 
 

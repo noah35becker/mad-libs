@@ -21,7 +21,8 @@ body{
     min-height: 100vh;
 }
 body, h1, h2, h3, h4, h5, h6, p, a{
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
 }
 hr{
     margin: 15px 0;
@@ -32,6 +33,7 @@ input:not(.slider), textarea{
     border-radius: 8px;
     padding-left: 7px;
     padding-right: 7px;
+    font-weight: 400;
 }
 main{
     flex-grow: 1;
@@ -43,6 +45,12 @@ main{
     color: var(--red);
     text-align: center;
     font-family: monospace;
+}
+input[type="password"]{
+    letter-spacing: 3px;
+}
+input[type="password"]::placeholder{
+    letter-spacing: normal;
 }
 
 
@@ -166,8 +174,12 @@ main{
 
 .template-maker input[name="title"]{
     margin-top: 8px;
+    color: blue
 }
 
+.template-maker input[name="title"]{
+    width: 60%;
+}
 .template-maker textarea{
     margin: 10px 0;
     width: 90%;
@@ -255,6 +267,7 @@ h3 .username{
 .update-user-info-wrapper button:hover{
     background-color: var(--blue-medium);
     border-color: white;
+    color: white;
 }
 
 
@@ -318,20 +331,23 @@ h3 .username{
     text-align: left;
     line-height: 1.8;
     font-size: 18px;
+    font-weight: 500;
 }
 .template-body span{
     font-family: monospace;
+    font-weight: 300;
 }
 .template-body span.mutable{
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: blue;
 }
 .template-body span.mutable input{
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: blue;
     height: 30px;
     margin-bottom: 9px;
     width: 160px;
+    font-size: 14px;
 }
 
 .redacted, .static{
@@ -439,6 +455,9 @@ h3 .username{
 
 
 /* FOOTER */
+footer{
+    font-weight: 500;
+}
 footer i{
     border-right: 1px solid black;
 }

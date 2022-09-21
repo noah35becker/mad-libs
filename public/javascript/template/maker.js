@@ -14,6 +14,8 @@ $('.edit-preview-toggle').on('change', 'input', async function(){
         $('.edit-window').css('display', 'block');
         $('.preview-window').css('display', 'none');
         $('.submit-error-msg').css('display', 'block');
+        $('.template-maker-submit-btn').css('display', 'inline-block');
+        previewBody.empty();
     } else {
         $('.slider')
             .val(0)
@@ -22,6 +24,7 @@ $('.edit-preview-toggle').on('change', 'input', async function(){
 
         await updatePreview();
 
+        $('.template-maker-submit-btn').css('display', 'none');
         $('.edit-window').css('display', 'none');
         $('.preview-window').css('display', 'block');
     }
@@ -30,14 +33,19 @@ $('.edit-preview-toggle').on('change', 'input', async function(){
 
 // Update preview
 async function updatePreview(){
+    const currentMockInputs = [];
+    $('.mutable input').each(function(){
+        currentMockInputs.push($(this).val() || '');
+    });
+
     var reqBody = {
         title: $('.edit-window input').val().trim(),
         content: $('.edit-window textArea').val().trim()
             .replaceAll(/(?:\r\n|\r|\n)/g, ' ')
     };
-    if (redactionOrder){
-        reqBody.redaction_order = redactionOrder
-    }
+    if (redactionOrder)
+        reqBody.redaction_order = redactionOrder;
+    
 
     const response = await fetch(`../api/template/preview?redactionLvl=${$('.slider').attr('redaction-lvl')}`, {
         method: 'post',
@@ -64,13 +72,16 @@ async function updatePreview(){
                 if (!elem.word.trim())
                     previewBody.append('&nbsp; ');
                 else if (elem.staticIndex === null)
-                    previewBody.append(`<span>${elem.word}</span>`);
+                    previewBody.append(`&hairsp;${elem.word}&hairsp;`);
                 else
                     previewBody.append(`<span class="static">${elem.word}</span>`);
             } else if (elem.isRedacted)
                 previewBody.append(`<span class="redacted">${elem.redactedString.replace(/./g, '_')}</span>`);
-            else
+            else{
                 previewBody.append(`<span class="mutable" mutable-index="${elem.mutableIndex}"><input type="text" placeholder="${elem.label}" /></span>`);
+                if (currentMockInputs[elem.mutableIndex])
+                    $(`.mutable[mutable-index="${elem.mutableIndex}"] input`).val(currentMockInputs[elem.mutableIndex])
+            }
         }
     } else {
         previewBody.append(`<p class="error-msg">${preview.message}</p>`);
@@ -81,29 +92,31 @@ async function updatePreview(){
 
 
 // Redaction slider change
-$('.slider').change(updatePreview);
+$('.slider').on('input', updatePreview);
 
 
 // New template submission
 $('.template-maker').submit(async function(event){
     event.preventDefault();
-    
-    const title = $('.edit-window input').val().trim();
-    const content = $('.edit-window textArea').val().trim()
-        .replaceAll(/(?:\r\n|\r|\n)/g, ' ');
 
-    const response = await fetch('../api/template/', {
-        method: 'post',
-        body: JSON.stringify({title, content}),
-        headers: {'Content-Type': 'application/json'}
-    });
+    if ($('.preview-window').css('display') === 'none'){
+        const title = $('.edit-window input').val().trim();
+        const content = $('.edit-window textArea').val().trim()
+            .replaceAll(/(?:\r\n|\r|\n)/g, ' ');
 
-    if (response.ok){
-        $('.submit-error-msg').text(''); // DELETE LATER
-        alert('submitted!'); // UPDATE LATER with a redirect to the new template page
-    }
-    else{
-        const responseJson = await response.json();
-        $('.submit-error-msg').text(responseJson.message === 'Validation error' ? 'This title is already taken' : responseJson.message);
+        const response = await fetch('../api/template/', {
+            method: 'post',
+            body: JSON.stringify({title, content}),
+            headers: {'Content-Type': 'application/json'}
+        });
+
+        if (response.ok){
+            $('.submit-error-msg').text(''); // DELETE LATER
+            alert('submitted!'); // UPDATE LATER with a redirect to the new template page
+        }
+        else{
+            const responseJson = await response.json();
+            $('.submit-error-msg').text(responseJson.message === 'Validation error' ? 'This title is already taken' : responseJson.message);
+        }
     }
 });

@@ -1,18 +1,18 @@
 
 // Blur after focus
-$('.slider').focus(() =>
+$('.slider').focus(function(){
     setTimeout(
-        () => $('.slider').blur(),
+        () => $(this).blur(),
         400
     )
-);
+});
 
 
 // Update redaction when slider changes
-$('.slider').change(async () => {
-    var newVal = $('.slider').val();
-    const max = +$('.slider').attr('max')
+$('.slider').on('input', function(){
+    var newVal = $(this).val();
+    const max = +$(this).attr('max');
 
-    $('.slider').attr('value', newVal);
-    $('.slider').attr('redaction-lvl', max - newVal);
+    $(this).attr('value', newVal);
+    $(this).attr('redaction-lvl', max - newVal);
 });
