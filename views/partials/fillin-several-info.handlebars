@@ -1,0 +1,27 @@
+
+<div class="fillins-wrapper">
+    <header>
+        <h3>{{title}}:</h3>
+        {{#if sorting}}
+            <div class="fillin-sorting sorting">
+                <div class="sorting-select-wrapper">
+                    <label for="fillin-sort">Sort by:&nbsp;</label>
+                    <select name="fillin-sort" id="fillin-sort">
+                        <option value="mostRecent" {{#if (compare initSort 'mostRecent')}}selected{{/if}}>Most recent</option>
+                        <option value="upvotes" {{#if (compare initSort 'upvotes')}}selected{{/if}}>Top voted</option>
+                        <option value="random" {{#if (compare initSort 'random')}}selected{{/if}}>Random</option>
+                    </select>
+                </div>
+                
+                <button class="random-refresh" style="display: none">Refresh</button>
+            </div>
+            <script src="/javascript/fillin/sort.js"></script>
+        {{/if}}
+    </header>
+
+    <div class="fillins-meta-wrapper">
+        {{#each fillins as |fillin|}}
+            {{>fillin-single-info fillin=fillin showUsernames=../showUsernames}}
+        {{/each}}
+    </div>
+</div>

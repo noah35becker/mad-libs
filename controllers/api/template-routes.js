@@ -82,7 +82,6 @@ router.get('/:id', async (req, res) => {
             case 'mostRecent':
             default:
                 findParams.order.push([{model: Fillin, as: 'fillins'}, 'created_at', 'DESC']);
-                break;
         }
 
         var dbTemplateData = await Template.findByPk(req.params.id, findParams);

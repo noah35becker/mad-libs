@@ -42,7 +42,6 @@ router.get('/', async (req, res) => {
             case 'mostRecent':
             default:
                 findParams.order.push(['created_at', 'DESC']);
-                break;
         }
         
         var dbFillinsData = await Fillin.findAll(findParams);

@@ -14,7 +14,7 @@
         <h3>Your templates:</h3>
 
         {{#each templates as |template|}}
-            {{>template-info template=template showDeleteBtns=true}}
+            {{>template-single-info template=template showDeleteBtns=true}}
         {{/each}}
     </div>
 
@@ -22,7 +22,7 @@
         <h3>Your fill-ins:</h3>
 
         {{#each fillins as |fillin|}}
-            {{>fillin-info fillin=fillin showDeleteBtns=true showUsernames=false}}
+            {{>fillin-single-info fillin=fillin showDeleteBtns=true showUsernames=false}}
         {{/each}}
     </div>
 {{/with}}

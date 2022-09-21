@@ -1,8 +1,7 @@
 
-<div class="fillins-wrapper">
-    <h3>Recent fill-ins:</h3>
-
-    {{#each fillins as |fillin|}}
-        {{>fillin-info fillin=fillin showUsernames=true}}
-    {{/each}}
+<div class="homepage-btns-wrapper">
+    <button class="view-random-template">View a random template</button>
+    <button class="view-random-fillin">View a random fillin</button>
 </div>
+
+{{>fillin-several-info title='User fill-ins' fillins=fillins sorting=true initSort=sortFillinsBy showUsernames=true}}
