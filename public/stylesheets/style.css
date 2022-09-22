@@ -129,12 +129,30 @@ input[type="password"]::placeholder{
 #login-modal span.close-modal{
     transition: .2s;
 }
-.login-form div button[type="submit"]{
-    transition: .2s;
+.login-forms-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
-
-.login-form div button[type="submit"]:hover{
+.login-forms-wrapper form{
+    flex-grow: 1;
+    margin: 0 10px 10px;
+    display: flex;
+    flex-direction: column;
+}
+.login-forms-wrapper button[type="submit"]{
+    transition: .2s !important;
+    border: 1px solid black !important;
+    border-radius: 10px;
+}
+.login-forms-wrapper button[type="submit"]:hover{
     background-color: var(--blue-medium) !important;
+    color: white !important;
+}
+.login-forms-wrapper .error-msg{
+    margin: 0 auto;
+    max-width: fit-content;
+    text-align: center;
 }
 
 

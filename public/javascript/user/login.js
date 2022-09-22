@@ -4,33 +4,68 @@ $('.nav-login').click(() =>
     $('#login-modal').css('display', 'block')
 );
 
+
 // Close login modal
-$('.close-modal').click(() =>
-    $('#login-modal').css('display', 'none')
-);
+$('.close-modal').click(() => {
+    $('#login-modal').css('display', 'none');
+    $('input[name|="login"]').val('');
+});
+
 
 
 // Login
 $('.login-form').submit(async event => {
     event.preventDefault();
 
-    const email = $('.login-form input[name="email"]').val().trim();
-    const password = $('.login-form input[name="password"]').val();
+    const email = $('input[name="login-email"]').val().trim();
+    const password = $('input[name="login-password"]').val();
 
-    const response = await fetch('/api/user/login',{
-        method: 'post',
-        body: JSON.stringify({
-            email,
-            password
-        }),
-        headers: {'Content-type': 'application/json'}
-    });
+    if (email && password){
+        const response = await fetch('/api/user/login',{
+            method: 'post',
+            body: JSON.stringify({
+                email,
+                password
+            }),
+            headers: {'Content-type': 'application/json'}
+        });
 
-    if (response.ok)
-        location.assign('/dashboard');
-    else if (response.status === 404 || response.status === 400){
-        const responseJson = await response.json();
-        $('.login-form .error-msg').text(responseJson.message);
-    } else
-        alert(response.statusText);
+        if (response.ok)
+            location.assign('/dashboard');
+        else if (response.status === 404 || response.status === 400){
+            const responseJson = await response.json();
+            $('.login-error-msg').text(responseJson.message);
+        } else
+            alert(response.statusText);
+    }
+});
+
+
+// Sign up
+$('.signup-form').submit(async event => {
+    event.preventDefault();
+
+    const username = $('input[name="signup-username"]').val().trim();
+    const email = $('input[name="signup-email"]').val().trim();
+    const password = $('input[name="signup-password"]').val();
+
+    if (username && email && password){
+        const response = await fetch('/api/user/',{
+            method: 'post',
+            body: JSON.stringify({
+                username,
+                email,
+                password
+            }),
+            headers: {'Content-type': 'application/json'}
+        });
+
+        if (response.ok)
+            location.assign('/dashboard');
+        else if (response.status === 409){
+            const responseJson = await response.json();
+            $('.signup-error-msg').text(responseJson.message);
+        } else
+            alert(response.statusText);
+    }
 });
