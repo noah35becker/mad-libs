@@ -3,6 +3,7 @@
 const {Model, DataTypes} = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
+const {MIN_PASSWORD_LENGTH} = require('../utils/global-vars');
 
 
 // Create the User model
@@ -38,7 +39,7 @@ User.init(
             type: DataTypes.STRING, 
             allowNull: false, 
             validate: {
-                len: [6] // must be >= 6 chars long
+                len: [MIN_PASSWORD_LENGTH] // must be >= MIN_PASSWORD_LENGTH chars long
             }
         }
     },

@@ -62,7 +62,7 @@ $('.signup-form').submit(async event => {
 
         if (response.ok)
             location.assign('/dashboard');
-        else if (response.status === 409){
+        else if (response.status === 400 || response.status === 409){
             const responseJson = await response.json();
             $('.signup-error-msg').text(responseJson.message);
         } else

@@ -4,6 +4,7 @@ const router = require('express').Router();
 const {User, Template, Fillin } = require('../../models');
 const sequelize = require('../../config/connection');
 const {isLoggedInApiAuth, isLoggedOutApiAuth} = require('../../utils/auth');
+const {MIN_PASSWORD_LENGTH} = require('../../utils/global-vars')
 
 
 // ROUTES
@@ -147,6 +148,9 @@ router.post('/', isLoggedOutApiAuth, async (req, res) => {
         if (errJson.name === 'SequelizeUniqueConstraintError'){
             errJson.message = 'This username and/or email address are already taken';
             res.status(409).send(errJson);
+        } else if (errJson.name === 'SequelizeValidationError') {
+            errJson.message = `Password must be at least ${MIN_PASSWORD_LENGTH} chars`;
+            res.status(400).send(errJson);
         } else
             res.status(500).send(errJson);
     }

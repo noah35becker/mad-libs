@@ -1,7 +1,7 @@
 
 // IMPORTS
 const router = require('express').Router();
-const {REDACTION_LEVELS} = require('../utils/general-helpers')
+const {REDACTION_LEVELS} = require('../utils/global-vars')
 const {isLoggedInUrlAuth} = require('../utils/auth');
 const {Template, User, Fillin} = require('../models');
 const sequelize = require('../config/connection');

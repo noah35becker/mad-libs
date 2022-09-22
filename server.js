@@ -22,7 +22,7 @@ const routes = require('./controllers');
 
 const PORT = process.env.PORT || 3001;
 
-const {SESSION_TIMEOUT} = require('./utils/general-helpers');
+const {SESSION_TIMEOUT} = require('./utils/global-vars');
 
 
 

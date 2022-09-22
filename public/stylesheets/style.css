@@ -150,7 +150,7 @@ input[type="password"]::placeholder{
     color: white !important;
 }
 .login-forms-wrapper .error-msg{
-    margin: 0 auto;
+    margin: 0 auto 10px;
     max-width: fit-content;
     text-align: center;
 }

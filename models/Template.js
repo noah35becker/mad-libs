@@ -6,7 +6,7 @@ const _ = require('lodash');
 
 // GLOBAL VARIABLES
 const MUTABLE_DEFAULT_LABEL = 'word';
-const {REDACTION_LEVELS} = require('../utils/general-helpers'); // not including zero-redaction
+const {REDACTION_LEVELS} = require('../utils/global-vars'); // not including zero-redaction
 
 
 
