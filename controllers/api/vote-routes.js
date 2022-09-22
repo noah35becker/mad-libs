@@ -2,7 +2,6 @@
 // IMPORTS
 const router = require('express').Router();
 const {Vote} = require('../../models');
-const sequelize = require('../../config/connection');
 
 
 
@@ -12,13 +11,11 @@ const sequelize = require('../../config/connection');
 router.get('/check', async (req, res) => {
     try{
         var dbVotesData = await Vote.findAll({
-            where: {fillin_id: +req.query.fillinId},
+            where: {fillin_id: req.query.fillinId},
             attributes: ['user_id']
         });
 
         dbVotesData = dbVotesData.map(vote => vote.get({plain: true}).user_id);
-
-        console.log(dbVotesData);
 
         res.json({
             message: dbVotesData.includes(req.session.user_id),
@@ -36,7 +33,7 @@ router.post('/', async (req, res) => {
     try{
         const dbVoteData = await Vote.create({
             user_id: req.session.user_id,
-            fillin_id: req.body.fillinId
+            fillin_id: req.body.fillin_id
         });
 
         res.json({
@@ -55,8 +52,8 @@ router.delete('/', async (req, res) => {
     try{
         await Vote.destroy({
             where: {
-                user_id: +req.session.user_id,
-                fillin_id: req.body.fillinId
+                user_id: req.session.user_id,
+                fillin_id: req.body.fillin_id
             }
         });
 

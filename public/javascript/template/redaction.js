@@ -101,4 +101,4 @@ async function updatePreview(){
 
 // RUN ON PAGE LOAD
 if ($('form.template').attr('template-id'))
-    $('.slider').trigger('input');
+    updatePreview();

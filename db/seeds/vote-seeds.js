@@ -16,6 +16,10 @@ const votesData = [
     },
     {
         user_id: 2,
+        fillin_id: 2
+    },
+    {
+        user_id: 2,
         fillin_id: 3
     },
     {

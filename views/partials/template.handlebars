@@ -5,6 +5,7 @@
             class="template"
             {{#if ../fillin}}
                 fillin-content="{{store_fillin_content ../fillin.content}}"
+                fillin-id="{{../fillin.id}}"
             {{/if}}
             template-id="{{id}}"
         >
@@ -19,8 +20,24 @@
 
             <hr />
 
-
-            <div class="template-body"></div> {{!-- Populated via the '/javascript/template/redaction.js' script --}}
+            <div class="template-body"> {{!-- Populated via the '/javascript/template/redaction.js' script for templates that aren't loading in a fill-in --}}
+                {{#if ../fillin}}
+                    {{#each content as |elem|}}
+                        {{#if elem.isStatic}}
+                            {{#if (compare elem ' ')}}
+                                &nbsp; 
+                            {{else if (compare elem.staticIndex null)}}
+                                &hairsp;{{elem.word}}&hairsp;
+                            {{else}}
+                                <span class="static">{{elem.word}}</span>
+                            {{/if}}
+                        {{else}}
+                            <span class="mutable mutable-fillin" mutable-index="{{elem.mutableIndex}}"></span>
+                        {{/if}}
+                    {{/each}}
+                    <script src="/javascript/fillin/populate-content.js"></script>
+                {{/if}}
+            </div>
 
             {{#unless ../fillin}}
                 {{#if ../loggedIn}}
@@ -34,7 +51,7 @@
 
     {{#if fillin}}
         <div class="fillin-meta-short">
-            <p>By <i>{{fillin.user.username}}</i> on <i>{{format_date fillin.created_at}}</i></p>
+            <p>By&nbsp;&nbsp;<span class="meta-username">{{fillin.user.username}}</span>&nbsp;&nbsp;on&nbsp;&nbsp;<span class="time">{{format_date fillin.created_at}}</span></p>
 
             <div class="votes">
                 <a><i class="fa-solid fa-thumbs-up"></i></a>
@@ -42,12 +59,13 @@
                 <span class="vote-count">{{fillin.vote_count}}</span>
             </div>
         </div>
-
-        <script src="/javascript/fillin/populate-content.js"></script>
-        <script src="/javascript/fillin/vote.js"></script>
+        {{#if loggedIn}}
+            <script src="/javascript/fillin/vote.js"></script>
+        {{/if}}
     {{/if}}
 </div>
 
-<script src="/javascript/template/redaction.js"></script>
-
-{{>fillin-several-info title='User fill-ins' fillins=template.fillins sorting=true initSort=sortFillinsBy showUsernames=true showTemplateTitles=false showDeleteBtns=adminAccess}}
+{{#unless fillin}}
+    <script src="/javascript/template/redaction.js"></script>
+    {{>fillin-several-info title='User fill-ins' fillins=template.fillins sorting=true initSort=sortFillinsBy showUsernames=true showTemplateTitles=false showDeleteBtns=adminAccess}}
+{{/unless}}
