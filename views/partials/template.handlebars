@@ -10,7 +10,7 @@
             template-id="{{id}}"
         >
             <header>
-                <h3 class="template-title template-title-static">{{title}} <span>(by <i>{{user.username}})</i></span></h3>
+                <h3><span class="template-title">{{title}}</span> <span class="template-username-wrapper">(by&emsp13;<span class="template-username">{{user.username}}</span>)</span></h3>
                 <div class="subheader">
                     {{#unless ../fillin}}
                         {{>redaction-slider redactionLvls=redaction_order.length}}

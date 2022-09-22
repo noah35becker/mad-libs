@@ -60,6 +60,25 @@ router.get('/', async (req, res) => {
 });
 
 
+// Get ID of one random fillin
+router.get('/random-id', async (req, res) => {
+    try{
+        var oneRand = await Fillin.findAll({
+            order: sequelize.random(),
+            limit: 1,
+            attributes: ['id']
+        });
+
+        oneRand = oneRand[0].get({plain: true});
+
+        res.json({rand_id: oneRand.id});
+    }catch (err){
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+
 // Get one
 router.get('/:id', async (req, res) => {
     try{
