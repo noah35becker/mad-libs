@@ -1,25 +1,22 @@
+var root = $('.root');
+var rootStyle = getComputedStyle(root);
 
-    var red = 0;
+var updatedColor = rgb(redColor, greenColor, blueColor);
+var mutableColor = rootStyles.getPropertyValue('--mutable-color');
+var redColor = 255;
+var greenColor = 169;
+var blueColor = 169; 
 
-
-/*parse whether colors are in optimal state for change 
-    Number.Prototype.between = function(100, 222) {
-    let min = Math.min.apply(Math, [100, 222]),
-      max = Math.max.apply(Math, [100, 222]);
-      return this >= min && this <= max; 
-  };
-
-    red.between();
-*/
 
 $('.body').on('mousemove', (e) => {
-    if(red <=250){
-        red++;
-        console.log("RGBs now variable");
-    }; else if (red >=251){
-        red--;
+    if(0 >= redColor <=250){
+        redColor++;
+    }; else if (0 >= redColor >=251){
+        redColor--;
     }
+
     }); 
 
-// e.mousemove.screenX;
-*/
+    root.style.setProperty('--mutable-color', updatedColor);
+
+    // 
