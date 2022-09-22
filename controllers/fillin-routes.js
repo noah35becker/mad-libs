@@ -98,6 +98,8 @@ router.get('/:id', async (req, res) => {
     dbFillinData.content = JSON.parse(dbFillinData.content);
     dbFillinData.template.content = JSON.parse(dbFillinData.template.content);
 
+    console.log(dbFillinData.comments);
+
     res.render('fillin/single', {
         loggedIn: req.session.loggedIn,
         fillin: dbFillinData,

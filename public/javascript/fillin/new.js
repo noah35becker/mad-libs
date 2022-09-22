@@ -24,9 +24,8 @@ $('form.template').submit(async function(event){
         });
 
         if (response.ok){
-            alert('submitted!');
-            // const responseJson = await response.json();
-            // location.assign('/fillin/' + responseJson)
+            const responseJson = await response.json();
+            location.assign('/fillin/' + responseJson.fillin.id);
         }else
             alert(response.statusText);
     }

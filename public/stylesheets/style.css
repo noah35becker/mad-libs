@@ -259,6 +259,10 @@ input[type="password"]::placeholder{
 .delete-btn{
     color: var(--red);
     cursor: pointer;
+    transition: .2s;
+}
+.delete-btn:hover{
+    opacity: .5;
 }
 .meta-item a{
     transition: .2s;
@@ -321,6 +325,52 @@ input[type="password"]::placeholder{
 }
 .sorting select{
     padding: 1px 4px;
+}
+
+
+/* COMMENTS */
+.comments-wrapper{
+    width: 90%;
+}
+.comment{
+    border-bottom: 1px solid rgb(107, 107, 107);
+    padding: 5px 10px;
+    margin-bottom: 15px;
+}
+.comment p{
+    margin: 3px 0;
+}
+.new-comment-wrapper{
+    margin-left: 8px;
+    padding-top: 7px;
+}
+.new-comment-wrapper button{
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-weight: 400;
+    transition: .2s;
+}
+.add-comment-btn{
+    background-color: rgb(230, 181, 36);
+}
+.add-comment-btn:hover{
+    color: white;
+    background-color: var(--blue-lighter);
+}
+.save-comment-btn{
+    background-color: var(--green);
+    color: white;
+}
+.save-comment-btn:hover{
+    background-color: white;
+    color: var(--green);
+}
+#new-comment-text{
+    padding: 3px 8px;
+    width: 45vw;
+    min-width: 300px;
+    margin-bottom: 10px;
 }
 
 

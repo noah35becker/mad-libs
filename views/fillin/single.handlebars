@@ -1,2 +1,16 @@
 
-{{>template template=fillin.template fillin=fillin loggedIn=loggedIn adminAccess=adminAccess currentUserId=currentUserId}}
+{{>template template=fillin.template fillin=fillin loggedIn=loggedIn adminAccess=adminAccess}}
+
+<div class="comments-wrapper">
+    {{#each fillin.comments as |comment|}}
+        {{>comment comment=comment currentUserId=../currentUserId}}
+    {{/each}}
+    
+    <form class="new-comment-wrapper">
+        <input name="new-comment" type="text" id="new-comment-text" style="display:none" />
+        <button class="add-comment-btn" type="button"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add comment</button>
+    </form>
+
+    <script src="/javascript/comment/delete.js"></script>
+    <script src="/javascript/comment/new.js"></script>
+</div>

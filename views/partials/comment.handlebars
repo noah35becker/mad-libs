@@ -1,0 +1,16 @@
+
+
+{{#with comment}}
+    <div class="comment" comment-id="{{id}}">
+        <p class="comment-content">{{content}}</p>
+
+        <div class="comment-meta">
+            <span class="meta-item meta-username">{{user.username}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="meta-item meta-created-at"><span class="time">{{format_date created_at}}</span></span>&nbsp;
+            
+            {{#if (compare user.id ../currentUserId)}}
+                &nbsp;<a class="delete-comment-btn delete-btn"><i class="fa-regular fa-trash-can"></i></a>
+                <script src="/javascript/comment/delete.js"></script>
+            {{/if}}
+        </div>
+    </div>
+{{/with}}
