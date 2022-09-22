@@ -339,6 +339,11 @@ input[type="password"]::placeholder{
 }
 .comment p{
     margin: 3px 0;
+    font-size: 16.5px;
+}
+.comment-meta span{
+    font-weight: lighter;
+    font-size: 14.5px;
 }
 .new-comment-wrapper{
     margin-left: 8px;
@@ -352,7 +357,7 @@ input[type="password"]::placeholder{
     transition: .2s;
 }
 .add-comment-btn{
-    background-color: rgb(230, 181, 36);
+    background-color: rgb(255, 200, 0);
 }
 .add-comment-btn:hover{
     color: white;
