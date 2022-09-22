@@ -1,7 +1,4 @@
 
-const {DateTime} = require('luxon');
-
-
 module.exports = {
     format_date: date => DateTime.fromISO(new Date(date).toISOString()).toFormat("MMM d, yyyy 'at' HH:mm:ss"),
 

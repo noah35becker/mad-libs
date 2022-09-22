@@ -1,13 +1,6 @@
 
 <div class="redaction-slider">
-    <input
-        class="slider" type="range" min="0" max="{{redactionLvls}}"
-        value="0"
-        redaction-lvl = "{{redactionLvls}}"
-        style="width: {{redaction_slider_width redactionLvls}}px"
-    />
-
-    <label><i>Redaction</i></label>
+    <input type="range" min="0" max="{{redactionLvls}}" class="slider" value="0" style="width: {{redaction_slider_width redactionLvls}}px"> <!--'value' here is just the initial value-->
 </div>
 
 {{!-- '/javascript/template/redaction.js' must be added BELOW the form element inside of which this slider sits --}}
