@@ -12,7 +12,7 @@ const votesData = [
     },
     {
         user_id: 1,
-        fillin_id: 3
+        fillin_id: 2
     },
     {
         user_id: 2,

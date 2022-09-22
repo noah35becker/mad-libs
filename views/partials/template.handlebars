@@ -24,7 +24,7 @@
 
             {{#unless ../fillin}}
                 {{#if ../loggedIn}}
-                    <span class="fillin-submit-instructions">Fill in, then&nbsp;&nbsp;<button type="submit" class="fillin-submit-btn">submit</button></span>
+                    <span class="fillin-submit-instructions">If you like, fill it in, then&nbsp;&nbsp;<button type="submit" class="fillin-submit-btn">submit</button></span>
                     <p class="fillin-submit-error-msg error-msg"></p>
                     <script src="/javascript/fillin/new.js"></script>
                 {{/if}}
@@ -49,3 +49,5 @@
 </div>
 
 <script src="/javascript/template/redaction.js"></script>
+
+{{>fillin-several-info title='User fill-ins' fillins=template.fillins sorting=true initSort=sortFillinsBy showUsernames=true showTemplateTitles=false showDeleteBtns=adminAccess}}

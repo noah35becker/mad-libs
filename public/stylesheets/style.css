@@ -345,6 +345,7 @@ h3 .username{
 }
 
 
+
 /* UPDATE USER INFO FORMS */
 .update-user-info-form{
     display: flex;
@@ -387,6 +388,9 @@ h3 .username{
 
 
 /* TEMPLATE VIEWER */
+.template-wrapper{
+    margin-bottom: 35px;
+}
 .template{
     text-align: center;
     background-color: var(--template-bkgd-color);

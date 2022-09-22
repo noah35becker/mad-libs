@@ -112,7 +112,9 @@ router.get('/:id', async (req, res) => {
     res.render('template/single', {
         template: dbTemplateData,
         loggedIn: req.session.loggedIn,
-        pageSubtitle: `${dbTemplateData.title} (by ${dbTemplateData.user.username})`
+        pageSubtitle: `${dbTemplateData.title} (by ${dbTemplateData.user.username})`,
+        sortFillinsBy: req.query.sortFillinsBy,
+        adminAccess: req.session.username === 'admin'
     });
 });
 
