@@ -1,23 +1,25 @@
-<div class="templates-wrapper">
-    <header>
-        <h3>{{title}}:</h3>
-        {{#if sorting}}
-            <div class="template-sorting sorting">
-                <div class="sorting-select-wrapper">
-                    <label for="template-sort">Sort by:&nbsp;</label>
-                    <select name="template-sort" id="template-sort">
-                        <option value="mostRecent" {{#if (compare initSort 'mostRecent')}}selected{{/if}}>Most recent</option>
-                        <option value="random" {{#if (compare initSort 'random')}}selected{{/if}}>Random</option>
-                    </select>
+{{#if templates.length}}
+    <div class="templates-wrapper">
+        <header>
+            <h3>{{title}}:</h3>
+            {{#if sorting}}
+                <div class="template-sorting sorting">
+                    <div class="sorting-select-wrapper">
+                        <label for="template-sort">Sort by:&nbsp;</label>
+                        <select name="template-sort" id="template-sort">
+                            <option value="mostRecent" {{#if (compare initSort 'mostRecent')}}selected{{/if}}>Most recent</option>
+                            <option value="random" {{#if (compare initSort 'random')}}selected{{/if}}>Random</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <script src="/javascript/template/sort.js"></script>
-        {{/if}}
-    </header>
+                <script src="/javascript/template/sort.js"></script>
+            {{/if}}
+        </header>
 
-    <div class="templates-meta-wrapper">
-        {{#each templates as |template|}}
-            {{>template-single-info template=template showDeleteBtns=../showDeleteBtns showUsernames=../showUsernames}}
-        {{/each}}
+        <div class="templates-meta-wrapper">
+            {{#each templates as |template|}}
+                {{>template-single-info template=template showDeleteBtns=../showDeleteBtns showUsernames=../showUsernames}}
+            {{/each}}
+        </div>
     </div>
-</div>
+{{/if}}
