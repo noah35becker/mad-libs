@@ -12,13 +12,43 @@ const _ = require('lodash');
 // ROUTES
 
 // Template maker
-router.get('/maker', isLoggedInUrlAuth, async(req, res) =>
+router.get('/maker', isLoggedInUrlAuth, async (req, res) =>
     res.render('template/maker', {
         loggedIn: true,
         pageSubtitle: 'Template maker',
         redactionLvls: REDACTION_LEVELS
     })
 );
+
+
+// View all
+router.get('/all', async (req, res) => {
+    var dbTemplatesData = await Template.findAll({
+        attributes: [
+            'id',
+            'title',
+            'created_at',
+            [sequelize.literal(`(SELECT COUNT(*) FROM fillin WHERE template.id = fillin.template_id)`), 'fillin_count']
+        ],
+        include: {
+            model: User,
+            attributes: ['username']
+        },
+        order: [['created_at', 'DESC']] // the default sort order for Templates, even if req.query.sortBy does NOT === 'mostRecent' (may be shuffled after findAll, see below)
+    });
+
+    if (req.query.sortBy === 'random')
+        dbTemplatesData = _.shuffle(dbTemplatesData);
+
+    dbTemplatesData = dbTemplatesData.map(template => template.get({plain: true}));
+
+    res.render('template/all', {
+        templates: dbTemplatesData,
+        sortBy: req.query.sortBy || 'mostRecent',
+        loggedIn: req.session.loggedIn,
+        pageSubtitle: 'All templates'
+    })
+});
 
 
 // Single template

@@ -139,15 +139,15 @@ input[type="password"]::placeholder{
 
 
 
-/* HOME PAGE */
-.homepage-btns-wrapper{
+/* RANDOM BUTTONS */
+.random-btns-wrapper{
     display: flex;
     width: 90%;
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 10px;
 }
-.homepage-btns-wrapper button{
+.random-btns-wrapper button{
     display: inline-block;
     padding: 5px 15px;
     font-size: 17px;
@@ -266,24 +266,24 @@ input[type="password"]::placeholder{
 }
 .meta-username,
 .meta-template-title, .meta-template-title a,
-.fillin-meta-long .meta-content{   
+.meta-fillin-content{   
     font-family: monospace;
 }
 .meta-template-title{
     color: green;
     font-size: 18px;
 }
-.fillin-meta-long .meta-content{
+.meta-fillin-content{
     color: blue;
 }
 
-.fillins-wrapper header{
+.fillins-wrapper header, .templates-wrapper header{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
 }
-.fillins-wrapper h3{
+.fillins-wrapper h3, .templates-wrapper h3{
     margin: 0 10px;
 }
 
@@ -296,10 +296,7 @@ input[type="password"]::placeholder{
 .sorting select{
     padding: 1px 4px;
 }
-.random-refresh{
-    margin-top: 8px;
-    font-size: 13px;
-}
+
 
 
 
@@ -377,6 +374,9 @@ h3 .username{
     background-color: var(--template-bkgd-color);
     border: var(--template-border);
     border-radius: 8px;
+}
+.template header h3{
+    padding: 0 20px;
 }
 .template header h3 span{
     font-size: 18px;

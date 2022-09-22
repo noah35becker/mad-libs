@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
                 }
             ],
             order: [
-                ['created_at', 'DESC'], // the default sort order for Templates, even if req.query.sortBy === 'mostRecent' (may be shuffled after getting, see below)
+                ['created_at', 'DESC'], // the default sort order for Templates, even if req.query.sortBy does NOT === 'mostRecent' (may be shuffled after findAll, see below)
                 [{model: Fillin, as: 'fillins'}, 'created_at', 'DESC'] // the default sort order for Fillins within each template
             ]
         });

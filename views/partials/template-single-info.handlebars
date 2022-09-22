@@ -1,7 +1,10 @@
 
 {{#with template}}
     <div class="template-meta" template-id="{{id}}">
-        <span class="meta-item meta-template-title">{{title}}</span>
+        <span class="meta-item meta-template-title"><a href="/template/{{id}}">{{meta_abbrev title}}</a></span>
+        {{#if ../showUsernames}}
+            &nbsp;by&nbsp; <span class="meta-username">{{user.username}}</span>
+        {{/if}}
         &nbsp;|&nbsp;
         <span class="meta-item meta-fillin-count">{{fillin_count}}&nbsp;{{format_plural 'fill-in' fillin_count}}</span>
         &nbsp;|&nbsp;

@@ -12,8 +12,6 @@
                         <option value="random" {{#if (compare initSort 'random')}}selected{{/if}}>Random</option>
                     </select>
                 </div>
-                
-                <button class="random-refresh" style="display: none">Refresh</button>
             </div>
             <script src="/javascript/fillin/sort.js"></script>
         {{/if}}
@@ -21,7 +19,7 @@
 
     <div class="fillins-meta-wrapper">
         {{#each fillins as |fillin|}}
-            {{>fillin-single-info fillin=fillin showUsernames=../showUsernames showTemplateTitles=../showTemplateTitles}}
+            {{>fillin-single-info fillin=fillin showUsernames=../showUsernames showTemplateTitles=../showTemplateTitles showDeleteBtns=../showDeleteBtns}}
         {{/each}}
     </div>
 </div>

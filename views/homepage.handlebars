@@ -1,8 +1,4 @@
 
-<div class="homepage-btns-wrapper">
-    <button class="view-random-template">View a random template</button>
-    <button class="view-random-fillin">View a random fillin</button>
-</div>
-<script src="/javascript/template/random.js"></script>
+{{>random-buttons templateBtn=true fillinBtn=true}}
 
 {{>fillin-several-info title='User fill-ins' fillins=fillins sorting=true initSort=sortFillinsBy showUsernames=true showTemplateTitles=true}}

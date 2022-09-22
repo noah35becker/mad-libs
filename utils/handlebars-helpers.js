@@ -17,13 +17,17 @@ module.exports = {
 
     store_fillin_content: fillinContent => JSON.stringify(fillinContent),
 
-    fillin_info_content_abbrev: fillinContent => {
+    meta_abbrev: longMetadata => {
         const length = 35;
-        
-        var output = fillinContent
-            .map(word => `"${word}"`)
-            .join(', ')
-            .substring(0, length);
+        var output;
+
+        if (!Array.isArray(longMetadata))
+            output = longMetadata.substring(0, length);
+        else
+            output = longMetadata
+                .map(word => `"${word}"`)
+                .join(', ')
+                .substring(0, length);
         
         if (output.length === length)
             output += '...';

@@ -10,19 +10,7 @@
 </div>
 
 {{#with user}}
-    <div class="templates-wrapper">
-        <h3>Your templates:</h3>
+    {{>template-several-info title='Your templates' templates=templates sorting=false showUsernames=false showDeleteBtns=true}}
 
-        {{#each templates as |template|}}
-            {{>template-single-info template=template showDeleteBtns=true}}
-        {{/each}}
-    </div>
-
-    <div class="fillins-wrapper">
-        <h3>Your fill-ins:</h3>
-
-        {{#each fillins as |fillin|}}
-            {{>fillin-single-info fillin=fillin showDeleteBtns=true showUsernames=false showTemplateTitle=true}}
-        {{/each}}
-    </div>
+    {{>fillin-several-info title='Your fill-ins' fillins=fillins sorting=false showUsernames=false showTemplateTitles=true}}
 {{/with}}

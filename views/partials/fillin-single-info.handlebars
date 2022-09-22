@@ -1,19 +1,15 @@
 
 {{#with fillin}}
     <div class="fillin-meta-long" fillin-id="{{id}}">
-        <span class="meta-item meta-content">{{fillin_info_content_abbrev content}}</span>
+        <span class="meta-item meta-fillin-content">{{meta_abbrev content}}</span>
         {{#if ../showUsernames}}
             &nbsp;by&nbsp; <span class="meta-username">{{user.username}}</span>
         {{/if}}
-        
         &nbsp;|&nbsp;
-        
         {{#if ../showTemplateTitles}}
             Template:&nbsp;&nbsp;<span class="meta-item meta-template-title"><a href="/template/{{template.id}}">{{template.title}}</a></span>
-        
             &nbsp;|&nbsp;
         {{/if}}
-        
         <span class="meta-item meta-comment-count">{{comment_count}}&nbsp;{{format_plural 'comment' comment_count}}</span>
         
         &nbsp;|&nbsp;
