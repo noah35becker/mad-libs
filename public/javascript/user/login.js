@@ -4,6 +4,9 @@ $('.nav-login').click(() =>
     $('#login-modal').css('display', 'block')
 );
 
+// Auto-fire 'open login modal' if needed
+if (+(new URL(location.href).searchParams.get('showLogin')))
+    $('.nav-login').click();
 
 // Close login modal
 $('.close-modal').click(() => {

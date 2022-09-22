@@ -53,7 +53,8 @@ router.get('/', async (req, res) => {
             sortFillinsBy: req.query.sortFillinsBy || 'mostRecent',
             fillinsPool: 'all',
             loggedIn: req.session.loggedIn,
-            fillins: dbFillinsData
+            fillins: dbFillinsData,
+            adminAccess: req.session.username === 'admin'
         });
     }catch (err){
         console.log(err);

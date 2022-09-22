@@ -136,7 +136,7 @@ input[type="password"]::placeholder{
 }
 .login-forms-wrapper form{
     flex-grow: 1;
-    margin: 0 10px 10px;
+    margin: 0 20px 10px;
     display: flex;
     flex-direction: column;
 }

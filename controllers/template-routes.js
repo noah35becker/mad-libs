@@ -46,7 +46,8 @@ router.get('/all', async (req, res) => {
         templates: dbTemplatesData,
         sortBy: req.query.sortBy || 'mostRecent',
         loggedIn: req.session.loggedIn,
-        pageSubtitle: 'All templates'
+        pageSubtitle: 'All templates',
+        adminAccess: req.session.username === 'admin'
     })
 });
 

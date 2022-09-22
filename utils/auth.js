@@ -11,7 +11,7 @@ const isLoggedInUrlAuth = (req, res, next) => {
     if (req.session.loggedIn)
         next();
     else
-        res.status(401).redirect('/login');
+        res.status(401).redirect('/?showLogin=1');
 };
 
 
