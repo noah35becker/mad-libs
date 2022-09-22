@@ -331,6 +331,7 @@ input[type="password"]::placeholder{
 /* COMMENTS */
 .comments-wrapper{
     width: 90%;
+    margin-bottom: 15px;
 }
 .comment{
     border-bottom: 1px solid rgb(107, 107, 107);
@@ -499,7 +500,7 @@ h3 .username{
     color: blue;
     height: 30px;
     margin-bottom: 9px;
-    width: 160px;
+    min-width: 210px;
     font-size: 14px;
 }
 

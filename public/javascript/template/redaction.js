@@ -85,7 +85,7 @@ async function updatePreview(){
             } else if (elem.isRedacted)
                 templateBody.append(`<span class="redacted">${elem.redactedString.replace(/./g, '_')}</span>`);
             else{
-                templateBody.append(`<span class="mutable" mutable-index="${elem.mutableIndex}"><input type="text" placeholder="${elem.label}" /></span>`);
+                templateBody.append(`<span class="mutable" mutable-index="${elem.mutableIndex}"><input type="text" placeholder="${elem.label}" size="${elem.label.length}" /></span>`);
                 if (currentInputs[elem.mutableIndex])
                     $(`.mutable[mutable-index="${elem.mutableIndex}"] input`).val(currentInputs[elem.mutableIndex]);
             }
