@@ -7,7 +7,7 @@ require('dotenv').config();
 // Connect to database
 let sequelize;
 if (process.env.JAWSDB_URL)
-    sequelize = new Sequelize(process.env.JAWSDB_URL);
+    sequelize = new Sequelize(process.env.JAWSDB_URL, {host: '0.0.0.0'});
 else
     sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
         host: 'localhost',
