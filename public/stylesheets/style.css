@@ -39,6 +39,7 @@ input:not(.slider), textarea{
     padding-left: 7px;
     padding-right: 7px;
     font-weight: 400;
+    max-width: 100%;
 }
 main{
     flex-grow: 1;
@@ -530,6 +531,9 @@ h3 .username{
 
 .fillin-submit-instructions{
     font-weight: 400;
+}
+.fillin-submit-instructions .fill-it-in{
+    color: blue;
 }
 .fillin-submit-instructions button{
     font-weight: 300;
