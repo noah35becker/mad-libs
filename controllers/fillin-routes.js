@@ -4,6 +4,7 @@ const router = require('express').Router();
 const {Fillin, Template, User, Comment} = require('../models');
 const _ = require('lodash');
 const sequelize = require('../config/connection');
+const {meta_abbrev} = require('../utils/handlebars-helpers');
 
 
 // ROUTES
@@ -52,6 +53,7 @@ router.get('/all', async (req, res) => {
 
     res.render('fillin/all', {
         sortFillinsBy: req.query.sortFillinsBy || 'mostRecent',
+        pageSubtitle: 'All fill-ins',
         loggedIn: req.session.loggedIn,
         fillins: dbFillinsData,
         adminAccess: req.session.username === 'admin'
@@ -102,6 +104,7 @@ router.get('/:id', async (req, res) => {
 
     res.render('fillin/single', {
         loggedIn: req.session.loggedIn,
+        pageSubtitle: `Fill-in | ${meta_abbrev(dbFillinData.content)} (by ${dbFillinData.user.username})`,
         fillin: dbFillinData,
         adminAccess: req.session.username === 'admin',
         currentUserId: req.session.user_id

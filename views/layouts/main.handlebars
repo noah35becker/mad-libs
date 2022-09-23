@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="/stylesheets/style.css" />
 
-        <link rel="icon" type="image/x-icon" href="/images/madlibs-logo-white.png" />
+        {{!-- <link rel="icon" type="image/x-icon" href="/images/madlibs-logo-white.png" /> --}}
 
         <title>Mad Libs{{#if pageSubtitle}} | {{pageSubtitle}}{{/if}}</title>
 
@@ -59,7 +59,7 @@
                     <button class="logout-nav w3-button w3-mobile">Logout</button>
                     <script src="/javascript/user/logout.js"></script>
                 {{else}}
-                    <button class="nav-login w3-button w3-mobile">Login</button>
+                    <button class="nav-login w3-button w3-mobile">Login / sign up</button>
                 {{/if}}
             </nav>
             <script src="/javascript/mobile-menu-click.js"></script>
@@ -88,7 +88,7 @@
                         </form>
 
                         <form class="signup-form">
-                            <h4>Signup</h4>
+                            <h4>Sign up</h4>
 
                             <input name="signup-username" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter username" required />
 
