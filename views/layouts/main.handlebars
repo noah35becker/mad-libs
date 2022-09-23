@@ -33,7 +33,8 @@
                 <a href="/" class="w3-button w3-mobile">Home</a>
                 
                 <div class="w3-dropdown-hover">
-                <a class="w3-button">Templates<span class="dropdown-arrow">&nbsp;&nbsp;&#9660;</span></a>
+                    <a class="w3-button">Templates<span class="dropdown-arrow">&nbsp;&nbsp;&#9660;</span></a>
+
                     <div class="w3-dropdown-content w3-bar-block w3-border">
                         {{#if loggedIn}}
                             <a href="/template/maker" class="w3-bar-item w3-button">Template maker</a>
@@ -43,7 +44,8 @@
                 </div>
 
                 <div class="w3-dropdown-hover">
-                <a class="w3-button">Fill-ins<span class="dropdown-arrow">&nbsp;&nbsp;&#9660;</span></a>
+                    <a class="w3-button">Fill-ins<span class="dropdown-arrow">&nbsp;&nbsp;&#9660;</span></a>
+
                     <div class="w3-dropdown-content w3-bar-block w3-border">
                         {{#if loggedIn}}
                             <a href="/template/all" class="w3-bar-item w3-button">Fill in a template</a>
@@ -60,6 +62,7 @@
                     <button class="nav-login w3-button w3-mobile">Login</button>
                 {{/if}}
             </nav>
+            <script src="/javascript/mobile-menu-click.js"></script>
         </header>
 
         {{#unless loggedIn}}
@@ -73,28 +76,27 @@
 
                     <div class="login-forms-wrapper">
                         <form class="login-form">
-                            <label><b>Email</b></label>
+                            <h4>Login</h4>
+
                             <input name="login-email" class="w3-input w3-border w3-margin-bottom" type="email" placeholder="Enter email" required />
                             
-                            <label><b>Password</b></label>
                             <input name="login-password" class="w3-input w3-border" type="password" placeholder="Enter Password" required />
                             
-                            <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Login</button>
+                            <button class="w3-button w3-block w3-section w3-padding" type="submit">Login</button>
 
                             <p class="login-error-msg error-msg"></p>
                         </form>
 
                         <form class="signup-form">
-                            <label><b>Username</b></label>
+                            <h4>Signup</h4>
+
                             <input name="signup-username" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter username" required />
 
-                            <label><b>Email</b></label>
                             <input name="signup-email" class="w3-input w3-border w3-margin-bottom" type="email" placeholder="Enter email" required />
                             
-                            <label><b>Password</b></label>
                             <input name="signup-password" class="w3-input w3-border" type="password" placeholder="Enter Password" required />
                             
-                            <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Sign up</button>
+                            <button class="w3-button w3-block w3-section w3-padding" type="submit">Sign up</button>
 
                             <p class="signup-error-msg error-msg"></p>
                         </form>

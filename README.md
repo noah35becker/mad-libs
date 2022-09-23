@@ -42,6 +42,7 @@ This application reimagines <b>Mad Libs</b>, the popular word game, in a browser
 - Buttons for viewing a <b>random</b> template or fill-in
 - <b>Auto logout</b> after 15 minutes of user idleness (i.e. no page reloads)
 - <b>Administrator access</b> with global delete privileges
+- <b>Responsive design</b>, adapting to different viewports and devices
 
 
 ## Credits
