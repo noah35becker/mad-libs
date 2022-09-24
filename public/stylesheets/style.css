@@ -58,6 +58,10 @@ input[type="password"]{
 input[type="password"]::placeholder{
     letter-spacing: normal;
 }
+select{
+    color: black;
+    padding: 1px 4px;
+}
 
 
 
@@ -329,9 +333,6 @@ input[type="password"]::placeholder{
     flex-direction: column;
     align-items: flex-end;
 }
-.sorting select{
-    padding: 1px 4px;
-}
 
 
 /* COMMENTS */
@@ -362,6 +363,7 @@ input[type="password"]::placeholder{
     border-radius: 10px;
     font-weight: 400;
     transition: .2s;
+    color: black;
 }
 .add-comment-btn{
     background-color: rgb(255, 200, 0);
@@ -407,6 +409,7 @@ h3 .username{
     border-radius: 10px;
     cursor: pointer;
     transition: .2s;
+    color: black;
 }
 .update-user-info-wrapper button:hover{
     background-color: var(--blue-medium);
@@ -577,7 +580,8 @@ span.mutable-fillin{
     margin: 0 20px;
 }
 .votes a{
-    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
 }
 .votes[current-user-voted] a{
     color: green;
@@ -671,5 +675,8 @@ footer i{
     }
     .preview-window{
         padding: 0;
+    }
+    .update-user-info-wrapper{
+        margin-bottom: 20px;
     }
 }

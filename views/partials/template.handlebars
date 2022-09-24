@@ -54,7 +54,7 @@
             <p>By&nbsp;&nbsp;<span class="meta-item meta-username">{{fillin.user.username}}</span>&nbsp;&nbsp;on&nbsp;&nbsp;<span class="time">{{format_date fillin.created_at}}</span></p>
 
             <div class="votes">
-                <a><i class="fa-solid fa-thumbs-up"></i></a>
+                <a {{#if loggedIn}}style="cursor: pointer;"{{/if}}><i class="fa-solid fa-thumbs-up"></i></a>
                 &nbsp;
                 <span class="vote-count">{{fillin.vote_count}}</span>
             </div>
