@@ -73,7 +73,6 @@ This application reimagines <b>Mad Libs</b>, the popular word game, in a browser
 ### Tutorials
 - [RegEx tutorial #1](https://regexone.com/)
 - [RegEx tutorial #2](https://towardsdatascience.com/regular-expressions-clearly-explained-with-examples-822d76b037b4)
-- [The RegEx 'not' operator](https://stackoverflow.com/questions/7317043/regex-not-operator)
 
 
 
