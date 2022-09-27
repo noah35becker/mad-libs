@@ -34,7 +34,7 @@ This application reimagines <b>Mad Libs</b>, the popular word game, in a browser
 
 
 ## Features
-- Adjustable <b>redaction</b> of Mad Libs templates (this really pops on screen!)
+- Adjustable <b>redaction</b> of Mad Libs templates (this really pops on screen!)—check out this [GitHub Gist](https://gist.github.com/noah35becker/7c7bb7a8b930d07cf1fd1f2b90577191) for a technical walkthrough
 - <b>User accounts</b> (including account management)
 - <b>Commenting</b> and <b>upvoting</b> user fill-ins
 - <b>Template maker</b> interface
@@ -122,8 +122,8 @@ If you have any questions, I'd be glad to hear from you—contact me at [noahbec
 Below are screenshots of the application:
 <br />
 
-<br />
 Home page
+<br />
 <img src="assets/screenshots/home-page.png" width="600"/>
 
 <br />
