@@ -73,6 +73,7 @@ This application reimagines <b>Mad Libs</b>, the popular word game, in a browser
 ### Tutorials
 - [RegEx tutorial #1](https://regexone.com/)
 - [RegEx tutorial #2](https://towardsdatascience.com/regular-expressions-clearly-explained-with-examples-822d76b037b4)
+- [Greedy and lazy quantifiers](https://javascript.info/regexp-greedy-and-lazy)
 
 
 
@@ -120,10 +121,9 @@ If you have any questions, I'd be glad to hear from you—contact me at [noahbec
 
 Below are screenshots of the application:
 <br />
-<br />
 
-Home page
 <br />
+Home page
 <img src="assets/screenshots/home-page.png" width="600"/>
 
 <br />

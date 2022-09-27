@@ -10,7 +10,7 @@ const {REDACTION_LEVELS} = require('../utils/global-vars'); // not including zer
 
 
 
-// Each static-word or mutable-user-input of the template is a Word object
+// Each static-word or mutable-fillin-input of the template is a Word object
 class Word{
     constructor(obj, indexOfThisType){
         this.isStatic = obj.isStatic;
@@ -30,8 +30,10 @@ class Word{
 // Create the Template model
 class Template extends Model{
 
+    
     // Convert string to array of Words
     static fromString(input){
+
         // Confirm that square brackets are formatted properly
         let squareBrackets = input.match(/[\[\]]/g);
         if (!squareBrackets || squareBrackets.length < 2)
@@ -47,11 +49,13 @@ class Template extends Model{
                 throw new Error('Square brackets are not properly formatted');
         });
 
+        // Parse string into mutables, static words, static punctuations (non-spaces), static punctutations (spaces)
         input = input.trim();
-        const split = input.match(RegExp(/\[[^\]]*\]|[a-z0-9']+|[^a-z0-9'\[\]\s]+|\s+/ig));
+        const split = input.match(RegExp(/\[.*?\]|[a-z0-9']+|[^a-z0-9'\[\]\s]+|\s+/ig));
+        
+        // Create the appropriate type of Word object for each parsed element
         const contentArr = [];
         var staticIndex = 0, mutableIndex = 0;
-
         for (var elem of split){
             if (elem.charAt(0) === '[')
                 contentArr.push(new Word(
@@ -72,6 +76,7 @@ class Template extends Model{
             }
         }
 
+        // Return relevant variables
         return {
             contentArr,
             static_count: staticIndex,
@@ -139,7 +144,7 @@ Template.init(
             }
         },
         content: {
-            type: DataTypes.JSON, // this will be an array of Words, and only converted to JSON upon beforeCreate (see hooks below)
+            type: DataTypes.JSON, // this will be an array of Words, and only converted to JSON upon beforeCreate (see hook below)
             allowNull: false
         },
         static_count: {
@@ -152,7 +157,7 @@ Template.init(
             }
         },
         redaction_order: {
-            type: DataTypes.JSON // this will be an array of integers, and only converted to JSON upon beforeCreate (see hooks below)
+            type: DataTypes.JSON // this will be an array of integers, and only converted to JSON upon beforeCreate (see hook below)
         },
         user_id: {
             type: DataTypes.INTEGER,
