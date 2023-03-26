@@ -647,6 +647,14 @@ footer{
     padding-left: 10px;
     padding-right: 10px;
 }
+footer a{
+    font-weight: inherit;
+    color: var(--blue);
+    transition: .2s;
+}
+footer a:hover{
+    opacity: .5;
+}
 footer i{
     border-right: 1px solid black;
 }
