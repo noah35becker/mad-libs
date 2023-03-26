@@ -662,8 +662,14 @@ footer i{
 
 
 /* MEDIA QUERIES FOR DIFFERENT SCREEN SIZES */
+@media screen and (max-width: 900px) {
+    .site-header{
+        flex-direction: column;
+        align-items: center;
+    }
+}
 @media screen and (max-width: 768px) {
-    .site-header, .fillins-wrapper header, .templates-wrapper header{
+    .fillins-wrapper header, .templates-wrapper header{
         flex-direction: column;
         align-items: center;
     }
