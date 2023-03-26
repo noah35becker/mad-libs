@@ -1,5 +1,6 @@
 
 const {DateTime} = require('luxon');
+const _ = require('lodash');
 
 
 module.exports = {
@@ -35,5 +36,22 @@ module.exports = {
         return output;
     },
 
-    compare: (a, b) => a === b
+    compare: (a, b) => a === b,
+
+    random_footer_names_order: () => _.shuffle([
+        {
+            name: 'Noah Becker',
+            github: 'noah35becker'
+        },
+        {
+            name: 'Claudia Yile',
+            github: 'claudiayile'
+        },
+        {
+            name: 'Min Maung',
+            github: 'minmaung0307'
+        }
+    ]).map(({name, github}) =>
+        `<a class='footer-link' href='https://github.com/${github}' target='_blank'>${name}</a>`
+    ).join(', ')
 };

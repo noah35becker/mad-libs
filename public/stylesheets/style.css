@@ -241,7 +241,7 @@ select{
 
 .template-maker input[name="title"]{
     margin-top: 8px;
-    color: blue
+    color: blue;
 }
 
 .template-maker input[name="title"]{
@@ -647,6 +647,14 @@ footer{
     padding-left: 10px;
     padding-right: 10px;
 }
+footer a{
+    font-weight: inherit;
+    color: var(--blue);
+    transition: .2s;
+}
+footer a:hover{
+    opacity: .5;
+}
 footer i{
     border-right: 1px solid black;
 }
@@ -654,8 +662,14 @@ footer i{
 
 
 /* MEDIA QUERIES FOR DIFFERENT SCREEN SIZES */
+@media screen and (max-width: 900px) {
+    .site-header{
+        flex-direction: column;
+        align-items: center;
+    }
+}
 @media screen and (max-width: 768px) {
-    .site-header, .fillins-wrapper header, .templates-wrapper header{
+    .fillins-wrapper header, .templates-wrapper header{
         flex-direction: column;
         align-items: center;
     }
