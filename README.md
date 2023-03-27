@@ -16,11 +16,12 @@
 
 
 ## Description
-This application reimagines <b>Mad Libs</b>, the popular word game, in a browser-based forum/blog context. Users create an account from which they can make Mad Libs templates, fill in other user-generated templates, and comment/upvote on other users' fill-ins.
+This application reimagines <b>Mad Libs</b>, the popular word game, in a browser-based forum/blog context. Users register for an account, create Mad Libs templates, fill in other user-generated templates, and comment/upvote on other users' fill-ins.
 
 
 <i><b>
 ## Table of contents
+- [Usage](#usage)
 - [Features](#features)
 - [Directions for future development](#directions-for-future-development)
 - [Credits](#credits)
@@ -31,30 +32,39 @@ This application reimagines <b>Mad Libs</b>, the popular word game, in a browser
 
 </i></b>
 
+## Usage
+Using the application should be intuitive and self-explanatory.
+<br>
+If you would prefer not to make your own account, you may use these test credentials:
+- u: test@gmail.com
+- p: testtest123
+
 
 ## Features
-- Adjustable <b>redaction</b> of Mad Libs templates (this really pops on screen!)—check out this [GitHub Gist](https://gist.github.com/noah35becker/7c7bb7a8b930d07cf1fd1f2b90577191) for a technical walkthrough
 - <b>User accounts</b> (including account management)
-- <b>Commenting</b> and <b>upvoting</b> user fill-ins
 - <b>Template maker</b> interface
-- Front-end <b>sorting</b> options for templates and fill-ins (most recent, upvotes, random)
+- Adjustable <b>redaction</b> of Mad Libs templates (this really pops on screen!)—check out this [<b>GitHub Gist</b>](https://gist.github.com/noah35becker/7c7bb7a8b930d07cf1fd1f2b90577191) for a technical walkthrough
+- <b>Filling in</b> templates created by other users
+- <b>Commenting</b> and <b>upvoting</b> on other users' fill-ins
+- Front-end <b>sorting</b> options for templates and fill-ins (most recent, top voted, random)
 - Buttons for viewing a <b>random</b> template or fill-in
-- <b>Auto logout</b> after 15 minutes of user idleness (i.e. no page reloads)
-- <b>Administrator access</b> with global delete privileges
+- <b>Auto logout</b> after 15 minutes of user idleness
+- <b>Administrator access</b> with global delete privileges for templates/fillins/comments
 - <b>Responsive design</b>, adapting to different viewports and devices
 
 
 
 ## Directions for future development
-- The <b>email</b> feature is only nominal at this time. It should be developed to actually include account management functionality, including account verification upon signup + account recovery.
-- If <b>templates</b> aren't editable, then at least make them <b>duplicable</b>.
+- The <b>email</b> feature should be developed to actually include standard account management functionality, including signup verification + password recovery.
+- Beyond users simply generating new templates from scratch, <b>old templates should be duplicable</b> as another possible starting-point.
 - Attach a <b>`new` tag</b> to fill-ins that have been created within the last 24 hours, to display as part of fill-in metadata.
-- For fill-ins, change the word <b>'a'/'an'</b> accordingly when followed by a user fill-in word.
-- On input, fill-ins could record a <b>`maxVisibilityOnInput`</b> value corresponding to the <b>maximum unredaction</b> with which the user viewed the template while filling it in, which could later be offered as a sort/filter parameter. The idea here is that filling out a template with full redaction leads to very different sorts of fill-ins than filling out a template with partial or no redaction.
-- <b>Username and password validation</b> (minimum # of characters, required uppercase/lowercase/special characters, etc.) should be added.
+- If the static word <b>'a'/'an'</b> appears in a template and is immediately followed by a fill-in field, then when that template is filled in by another user, change this word accordingly depending on whether the fill-in word begins with a vowel.
+- Improve <b>line breaks</b> for how fill-ins render on screen.
+- On input, fill-ins could record a <b>`maxVisibilityOnInput`</b> value corresponding to the <b>maximum unredaction</b> with which the user viewed the template while filling it in. This could later be offered as a sort/filter parameter for user-generated fill-ins. The idea here is that filling out a template with full redaction leads to very different sorts of fill-ins than filling out a template with partial or no redaction.
+- <b>Username and password validation</b> during account creation (minimum # of characters, required uppercase/lowercase/special characters, etc.).
 - All screens that require a password should have the option to <b>show or hide</b> it while inputting.
-- There are places on the application where it would be helpful to have the user <b>enter their password twice</b>.
-- A <b>search</b> feature
+- There are places in the application where it would be helpful to have the user <b>enter their password twice</b>.
+- A <b>search</b> feature for templates and/or fill-ins.
 
 
 
