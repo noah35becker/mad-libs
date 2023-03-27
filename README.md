@@ -21,15 +21,14 @@ This application reimagines <b>Mad Libs</b>, the popular word game, in a browser
 
 <i><b>
 ## Table of contents
-
 - [Features](#features)
-- [Credits](#credits)
 - [Directions for future development](#directions-for-future-development)
-
+- [Credits](#credits)
 - [Contributing](#contributing)
 - [License](#license)
 - [Questions](#questions)
 - [Screenshots of deployed application](#screenshots-of-deployed-application)
+
 </i></b>
 
 
@@ -43,6 +42,21 @@ This application reimagines <b>Mad Libs</b>, the popular word game, in a browser
 - <b>Auto logout</b> after 15 minutes of user idleness (i.e. no page reloads)
 - <b>Administrator access</b> with global delete privileges
 - <b>Responsive design</b>, adapting to different viewports and devices
+
+
+
+## Directions for future development
+- The <b>email</b> feature is only nominal at this time. It should be developed to actually include account management functionality, including account verification upon signup + account recovery.
+- If <b>templates</b> aren't editable, then at least make them <b>duplicable</b>.
+- Attach a <b>`new` tag</b> to fill-ins that have been created within the last 24 hours, to display as part of fill-in metadata.
+- For fill-ins, change the word <b>'a'/'an'</b> accordingly when followed by a user fill-in word.
+- On input, fill-ins could record a <b>`maxVisibilityOnInput`</b> value corresponding to the <b>maximum unredaction</b> with which the user viewed the template while filling it in, which could later be offered as a sort/filter parameter. The idea here is that filling out a template with full redaction leads to very different sorts of fill-ins than filling out a template with partial or no redaction.
+- <b>Username and password validation</b> (minimum # of characters, required uppercase/lowercase/special characters, etc.) should be added.
+- All screens that require a password should have the option to <b>show or hide</b> it while inputting.
+- There are places on the application where it would be helpful to have the user <b>enter their password twice</b>.
+- A <b>search</b> feature
+
+
 
 
 ## Credits
@@ -74,19 +88,6 @@ This application reimagines <b>Mad Libs</b>, the popular word game, in a browser
 - [RegEx tutorial #1](https://regexone.com/)
 - [RegEx tutorial #2](https://towardsdatascience.com/regular-expressions-clearly-explained-with-examples-822d76b037b4)
 - [Greedy and lazy quantifiers](https://javascript.info/regexp-greedy-and-lazy)
-
-
-
-## Directions for future development
-- The <b>email</b> feature is only nominal at this time. It should be developed to actually include account management functionality, including account verification upon signup + account recovery.
-- If <b>templates</b> aren't editable, then at least make them <b>duplicable</b>.
-- Attach a <b>`new` tag</b> to fill-ins that have been created within the last 24 hours, to display as part of fill-in metadata.
-- For fill-ins, change the word <b>'a'/'an'</b> accordingly when followed by a user fill-in word.
-- On input, fill-ins could record a <b>`maxVisibilityOnInput`</b> value corresponding to the <b>maximum unredaction</b> with which the user viewed the template while filling it in, which could later be offered as a sort/filter parameter. The idea here is that filling out a template with full redaction leads to very different sorts of fill-ins than filling out a template with partial or no redaction.
-- <b>Username and password validation</b> (minimum # of characters, required uppercase/lowercase/special characters, etc.) should be added.
-- All screens that require a password should have the option to <b>show or hide</b> it while inputting.
-- There are places on the application where it would be helpful to have the user <b>enter their password twice</b>.
-- A <b>search</b> feature
 
 
 
