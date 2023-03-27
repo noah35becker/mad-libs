@@ -1,6 +1,6 @@
 
 const {DateTime} = require('luxon');
-const _ = require('lodash');
+const shuffle = require('lodash.shuffle');
 
 
 module.exports = {
@@ -38,7 +38,7 @@ module.exports = {
 
     compare: (a, b) => a === b,
 
-    random_footer_names_order: () => _.shuffle([
+    random_footer_names_order: () => shuffle([
         {
             name: 'Noah Becker',
             github: 'noah35becker'

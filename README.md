@@ -88,7 +88,7 @@ If you would prefer not to make your own account, you may use these test credent
     - [Sequelize](https://www.npmjs.com/package/sequelize)
     - [Connect Session Sequelize](https://www.npmjs.com/package/connect-session-sequelize)
     - [Bcrypt](https://www.npmjs.com/package/bcrypt)
-    - [Lodash](https://www.npmjs.com/package/lodash)
+    - [Lodash shuffle](https://www.npmjs.com/package/lodash.shuffle)
     - [Luxon](https://www.npmjs.com/package/luxon)
     - [Dotenv](https://www.npmjs.com/package/dotenv)
 - [Heroku](https://www.heroku.com/)

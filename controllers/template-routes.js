@@ -5,7 +5,7 @@ const {REDACTION_LEVELS} = require('../utils/global-vars')
 const {isLoggedInUrlAuth} = require('../utils/auth');
 const {Template, User, Fillin} = require('../models');
 const sequelize = require('../config/connection');
-const _ = require('lodash');
+const shuffle = require('lodash.shuffle');
 
 
 
@@ -38,7 +38,7 @@ router.get('/all', async (req, res) => {
     });
 
     if (req.query.sortBy === 'random')
-        dbTemplatesData = _.shuffle(dbTemplatesData);
+        dbTemplatesData = shuffle(dbTemplatesData);
 
     dbTemplatesData = dbTemplatesData.map(template => template.get({plain: true}));
 
@@ -107,7 +107,7 @@ router.get('/:id', async (req, res) => {
     });
 
     if (req.query.sortFillinsBy === 'random')
-        dbTemplateData.fillins = _.shuffle(dbTemplateData.fillins);
+        dbTemplateData.fillins = shuffle(dbTemplateData.fillins);
     
     res.render('template/single', {
         template: dbTemplateData,
