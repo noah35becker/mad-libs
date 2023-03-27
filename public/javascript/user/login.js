@@ -11,7 +11,12 @@ if (+(new URL(location.href).searchParams.get('showLogin')))
 // Close login modal
 $('.close-modal').click(() => {
     $('#login-modal').css('display', 'none');
-    $('input[name|="login"]').val('');
+    
+    $('.login-form').get(0).reset();
+    $('.login-error-msg').text('');
+
+    $('.signup-form').get(0).reset();
+    $('.signup-error-msg').text('');
 });
 
 
