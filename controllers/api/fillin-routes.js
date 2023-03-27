@@ -3,7 +3,7 @@
 const router = require('express').Router();
 const {Fillin, Template, User, Comment} = require('../../models');
 const sequelize = require('../../config/connection');
-const _ = require('lodash');
+const shuffle = require('lodash.shuffle');
 
 
 
@@ -44,7 +44,7 @@ router.get('/', async (req, res) => {
         var dbFillinsData = await Fillin.findAll(findParams);
 
         if (req.query.sortBy === 'random')
-            dbFillinsData = _.shuffle(dbFillinsData);
+            dbFillinsData = shuffle(dbFillinsData);
 
         dbFillinsData = dbFillinsData.map(fillin => {
             let output = fillin.get({plain: true});

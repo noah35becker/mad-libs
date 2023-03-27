@@ -2,7 +2,7 @@
 // IMPORTS
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
-const _ = require('lodash');
+const shuffle = require('lodash.shuffle');
 
 // GLOBAL VARIABLES
 const MUTABLE_DEFAULT_LABEL = 'word';
@@ -92,7 +92,7 @@ class Template extends Model{
         for (let i = 0; i < REDACTION_LEVELS; i++)
             output.push(i);
     
-        return _.shuffle(output);
+        return shuffle(output);
     }
 
 
