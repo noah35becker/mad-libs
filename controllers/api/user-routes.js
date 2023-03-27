@@ -160,6 +160,8 @@ router.post('/', isLoggedOutApiAuth, async (req, res) => {
 // Login
 router.post('/login', isLoggedOutApiAuth, async (req, res) => {
     try{
+        const errMsg = 'Incorrect credentials';
+
         const dbUserData = await User.findOne({
             where: {
                 email: req.body.email
@@ -167,13 +169,13 @@ router.post('/login', isLoggedOutApiAuth, async (req, res) => {
         });
 
         if (!dbUserData){
-            res.status(404).json({message: 'No user found with this email address'});
+            res.status(404).json({message: errMsg});
             return;
         }
 
         const isPwCorrect = await dbUserData.checkPassword(req.body.password);
         if (!isPwCorrect){
-            res.status(400).json({message: 'Incorrect password'});
+            res.status(400).json({message: errMsg});
             return;
         }
         

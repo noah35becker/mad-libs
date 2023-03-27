@@ -11,7 +11,12 @@ if (+(new URL(location.href).searchParams.get('showLogin')))
 // Close login modal
 $('.close-modal').click(() => {
     $('#login-modal').css('display', 'none');
-    $('input[name|="login"]').val('');
+    
+    $('.login-form').get(0).reset();
+    $('.login-error-msg').text('');
+
+    $('.signup-form').get(0).reset();
+    $('.signup-error-msg').text('');
 });
 
 
@@ -37,7 +42,11 @@ $('.login-form').submit(async event => {
             location.assign('/dashboard');
         else if (response.status === 404 || response.status === 400){
             const responseJson = await response.json();
-            $('.login-error-msg').text(responseJson.message);
+            
+            if ($('.login-error-msg').text() === responseJson.message)  // If err msg is the same as the user received on their last form submission, make it flash
+                flashErrMsg($('.login-error-msg'))
+            else  // if err msg is a new err msg, simply display it
+                $('.login-error-msg').text(responseJson.message);
         } else
             alert(response.statusText);
     }
@@ -67,8 +76,32 @@ $('.signup-form').submit(async event => {
             location.assign('/dashboard');
         else if (response.status === 400 || response.status === 409){
             const responseJson = await response.json();
-            $('.signup-error-msg').text(responseJson.message);
+
+            
+            if ($('.signup-error-msg').text() === responseJson.message)  // If err msg is the same as the user received on their last form submission, make it flash
+                flashErrMsg($('.signup-error-msg'))
+                else  // if err msg is a new err msg, simply display it
+                $('.signup-error-msg').text(responseJson.message);
         } else
             alert(response.statusText);
     }
 });
+
+
+// Flash err msg on given form
+function flashErrMsg(jQueryErrMsgEl){
+    const numberOfFlashes = 5;
+    
+    let counter = 0;
+    const italToggle = setInterval(() => {   
+        if (counter % 2 === 0)
+            jQueryErrMsgEl
+                .css('font-style', 'italic')
+                .css('font-weight', 'bold');
+        else
+            jQueryErrMsgEl.removeAttr('style');
+
+        if (++counter === numberOfFlashes * 2)
+            clearInterval(italToggle);
+    }, 150);
+}

@@ -138,10 +138,11 @@ select{
 .login-forms-wrapper{
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: start;
 }
 .login-forms-wrapper form{
     flex-grow: 1;
+    flex-basis: 40%;
     margin: 10px 20px;
     display: flex;
     flex-direction: column;
@@ -160,8 +161,7 @@ select{
 }
 .login-forms-wrapper .error-msg{
     margin: 0 auto 10px;
-    max-width: fit-content;
-    text-align: center;
+    word-break: break-word;
 }
 
 
